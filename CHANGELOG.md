@@ -54,3 +54,19 @@ gem uninstall zine -x && gem build zine.gemspec && gem install ./zine-0.1.0.gem
 **Links to work**
 
 1. [Tweet](https://twitter.com/mikekreuzer/status/824602333359190017)
+
+### Day 4: January 27, 2017
+
+**Today's Progress**:
+
+- moved the log to the Zine repo
+- went with Slim templates instead - rendering & partials both working, yet to translate the existing templates though
+- wrote some more rspec tests, played with cucumber for a while but decided not to use it, it's a DSL too far.
+
+**Thoughts:**
+
+Couldn't resist the terse syntax of Slim. Lagging behind on the test front.
+
+**Links to work**
+
+1. [Tweet](https://twitter.com/mikekreuzer/status/824948475355762688)
