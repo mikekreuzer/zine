@@ -70,3 +70,20 @@ Couldn't resist the terse syntax of Slim. Lagging behind on the test front.
 **Links to work**
 
 1. [Tweet](https://twitter.com/mikekreuzer/status/824948475355762688)
+
+### Day 5: January 28, 2017
+
+**Today's Progress**:
+
+- dropped Slim, back with Erb - translation was going to take too long
+- added HTML compression, even though the difference is only around 1kb a page
+
+**Thoughts:**
+
+Simplicity rules. Terse syntax is neat, but yet another DSL is a burden.
+
+On a positive note I feel like I'm on a bit of a roll with this project now. Tags next, I think.
+
+**Links to work**
+
+1. [Tweet](https://twitter.com/mikekreuzer/status/825327843059994625)
