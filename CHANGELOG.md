@@ -104,4 +104,4 @@ Next up: the home & article list pages, pages that aren't posts like the about p
 
 **Links to work**
 
-1. 1. [Tweet](https://twitter.com/mikekreuzer/status/825689819204300800)
+1. [Tweet](https://twitter.com/mikekreuzer/status/825689819204300800)
