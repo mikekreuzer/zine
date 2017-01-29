@@ -28,7 +28,7 @@ I might push the code up every few days, not sure about that yet.
 
 **Thoughts:**
 
-Next up is the the meat of the blog engine - reading the YAML & Markdown, generating the folder structure & pushing text through Kramdown & Erb. That's where I'd hoped to get to tonight.
+Next up is the the meat of the blog engine - reading the YAML & Markdown, generating the folder structure & pushing text through Kramdown & ERB. That's where I'd hoped to get to tonight.
 
 **Links to work**
 
@@ -44,7 +44,7 @@ Next up is the the meat of the blog engine - reading the YAML & Markdown, genera
 
 **Thoughts:**
 
-Didn't get as far as the Erb templates - still have to translate my current Jade templates across, probably via the Jade's HTML output. That's for tomorrow.
+Didn't get as far as the ERB templates - still have to translate my current Jade templates across, probably via the Jade's HTML output. That's for tomorrow.
 
 Big time saver today was remembering to chain bash commands:
 ```bash
@@ -75,7 +75,7 @@ Couldn't resist the terse syntax of Slim. Lagging behind on the test front.
 
 **Today's Progress**:
 
-- dropped Slim, back with Erb - translation was going to take too long
+- dropped Slim, back with ERB - translation was going to take too long
 - added HTML compression, even though the difference is only around 1kb a page
 
 **Thoughts:**
@@ -87,3 +87,21 @@ On a positive note I feel like I'm on a bit of a roll with this project now. Tag
 **Links to work**
 
 1. [Tweet](https://twitter.com/mikekreuzer/status/825327843059994625)
+
+### Day 6: January 29, 2017
+
+**Today's Progress**:
+
+- ERB partials
+- working posts & tags
+- draft of the README.md file
+
+**Thoughts:**
+
+I'm occasionally missing the safety check of a compile failing when using a compiled language. Also structs in Ruby aren't the best... but those are both partly a problem of my development habits. Still thinking about Cucumber & Slim, and seeing DSLs as a cost, as a topic for a blog post. Thinking of swapping colorize for pastel too (only because of the monkey patching).
+
+Next up: the home & article list pages, pages that aren't posts like the about page, and copying across the CSS - all up that would probably represent a minimum viable product. Much less than I plan to do in the end, but enough for a first cut of the gem I think. End of week one tomorrow!
+
+**Links to work**
+
+1. 1. [Tweet](https://twitter.com/mikekreuzer/status/825689819204300800)
