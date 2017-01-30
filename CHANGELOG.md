@@ -105,3 +105,18 @@ Next up: the home & article list pages, pages that aren't posts like the about p
 **Links to work**
 
 1. [Tweet](https://twitter.com/mikekreuzer/status/825689819204300800)
+
+### Day 7: January 30, 2017
+
+**Today's Progress**:
+
+- delete added as a CLI option
+- refactoring of tags (to be continued, to swap out ERB::Util for a slug name method, I think)
+
+**Thoughts:**
+
+Might push the template and CSS folders into a layouts/default folder, in case anyone ever wants to make other layouts. Tomorrow. Busy day. One week though, nice.
+
+**Links to work**
+
+1. [Tweet](https://twitter.com/mikekreuzer/status/826045386405998594)
