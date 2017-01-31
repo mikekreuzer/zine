@@ -120,3 +120,19 @@ Might push the template and CSS folders into a layouts/default folder, in case a
 **Links to work**
 
 1. [Tweet](https://twitter.com/mikekreuzer/status/826045386405998594)
+
+### Day 8: January 31, 2017
+
+**Today's Progress**:
+
+- replaced Colorize with Rainbow
+- replaced ERB::Util with a slug name generator
+- added dates to tag lists
+
+**Thoughts:**
+
+Refactoring my monolithic page class tomorrow, cleaning up tags was preparation for that.
+
+**Links to work**
+
+1. [Tweet](https://twitter.com/mikekreuzer/status/826414672542732288)
