@@ -136,3 +136,20 @@ Refactoring my monolithic page class tomorrow, cleaning up tags was preparation 
 **Links to work**
 
 1. [Tweet](https://twitter.com/mikekreuzer/status/826414672542732288)
+
+### Day 9: February 1, 2017
+
+**Today's Progress**:
+
+- Ripley for February
+- Ripley 0.7.1
+
+**Thoughts:**
+
+A very brief break from Zine to detour back to some Elixir. The March edition of Ripley could be a Zine site, in time for its first anniversary in April.
+
+**Links to work**
+
+1. [Ripley](https://mikekreuzer.github.io/Ripley/)
+2. [Ripley code](https://github.com/mikekreuzer/Ripley)
+3. [Tweet](https://twitter.com/mikekreuzer/status/826775864696147969)
