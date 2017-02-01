@@ -146,7 +146,7 @@ Refactoring my monolithic page class tomorrow, cleaning up tags was preparation 
 
 **Thoughts:**
 
-A very brief break from Zine to detour back to some Elixir. The March edition of Ripley could be a Zine site, in time for its first anniversary in April.
+A very brief break from Zine to detour back to some Elixir coding. The March edition of Ripley could be a Zine site, in time for its first anniversary in April.
 
 **Links to work**
 
