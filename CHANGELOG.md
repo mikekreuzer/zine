@@ -153,3 +153,18 @@ A very brief break from Zine to detour back to some Elixir coding. The March edi
 1. [Ripley](https://mikekreuzer.github.io/Ripley/)
 2. [Ripley code](https://github.com/mikekreuzer/Ripley)
 3. [Tweet](https://twitter.com/mikekreuzer/status/826775864696147969)
+
+### Day 10: February 2, 2017
+
+**Today's Progress**:
+
+- copies files that aren't Markdown or templates to the build directory, preserving the folder structure
+- a simple WEBrick server for preview, with SSL
+
+**Thoughts:**
+
+As well as breaking up Page I'm going to have break up a monolithic Site class, these things grow like topsy. Will do that when this cold abates.
+
+**Links to work**
+
+1. [Tweet](https://twitter.com/mikekreuzer/status/827135313621311488)
