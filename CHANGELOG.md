@@ -168,3 +168,17 @@ As well as breaking up Page I'm going to have break up a monolithic Site class, 
 **Links to work**
 
 1. [Tweet](https://twitter.com/mikekreuzer/status/827135313621311488)
+
+### Day 11: February 3, 2017
+
+**Today's Progress**:
+
+- moved yesterday's local server out of the site class
+
+**Thoughts:**
+
+Fruitlessly debugged ERB. The cold continues. Real progress when I stop coughing.
+
+**Links to work**
+
+1. [Tweet](https://twitter.com/mikekreuzer/status/827504315430367232)
