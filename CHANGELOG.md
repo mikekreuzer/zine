@@ -182,3 +182,23 @@ Fruitlessly debugged ERB. The cold continues. Real progress when I stop coughing
 **Links to work**
 
 1. [Tweet](https://twitter.com/mikekreuzer/status/827504315430367232)
+
+### Day 12: February 4, 2017
+
+**Today's Progress**:
+
+- WEBrick swapped out for Thin - WEBrick's been ridiculously slow
+- DataPage class carved out of Page
+- home & all tags index pages
+
+**Thoughts:**
+
+The index page of all the tag pages is the first bit of Zine that pushes beyond the envelope of what I'm using now. That feels good.
+
+I'm wondering how much of my memory of having speed issue with Jekyll was caused by WEBrick.
+
+Finally starting to feel better, summer colds are the pits.
+
+**Links to work**
+
+1. [Tweet](https://twitter.com/mikekreuzer/status/827857782330138628)
