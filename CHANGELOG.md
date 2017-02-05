@@ -202,3 +202,23 @@ Finally starting to feel better, summer colds are the pits.
 **Links to work**
 
 1. [Tweet](https://twitter.com/mikekreuzer/status/827857782330138628)
+
+### Day 13: February 5, 2017
+
+**Today's Progress**:
+
+- more serious site & page class refactoring
+- pages that aren't blog posts
+- started into RSS/Atom feeds, and the standard library docs are borderline nonexistent
+
+**Thoughts:**
+
+Lucky 13.
+
+RSS would round out the two week mark nicely, if I get it to work. I have escaped content, but getting CDATA in there without writing the generator myself would be nice.
+
+Two weeks to get the rough structure right, and to get something like a minimum viable product feels about right. While that would be much less than I intend to do it'd be time to start pushing code to GitHub & to release this as more than a stub of a gem. Tomorrow, maybe, with a bit of luck.
+
+**Links to work**
+
+1. [Tweet](https://twitter.com/mikekreuzer/status/828231071770632193)
