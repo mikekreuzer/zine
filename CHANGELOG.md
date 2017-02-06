@@ -238,4 +238,6 @@ Two weeks, and here's the first cut of code to GitHub & a (slightly) more than j
 
 **Links to work**
 
-To follow
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Gem](https://rubygems.org/gems/zine)
+3. [Tweet](https://twitter.com/mikekreuzer/status/828584150479228928)
