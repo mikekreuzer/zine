@@ -1,0 +1,16 @@
+<%= header_partial %>
+<main>
+  <section>
+    <h2><%= page[:title] %></h2>
+    <p class="date"><%= page[:date_us] %></p>
+    <%= html %>
+    <div class="tags">Tags:
+      <ul>
+        <% for @tag in page[:tags] %>
+          <li><a href="/tags/<%= @tag[:tag_slug] %>.html"><%= @tag[:name] %></a></li>
+        <% end %>
+      </ul>
+    </div>
+  </section>
+</main>
+<%= footer_partial %>

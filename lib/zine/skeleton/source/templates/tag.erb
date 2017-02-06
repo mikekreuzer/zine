@@ -1,0 +1,15 @@
+<%= header_partial %>
+<main>
+  <section>
+    <h2><%= page[:title] %></h2>
+    <p>Pages on this topic:</p>
+      <ul>
+        <% for @item in data %>
+          <li><a href="<%= page[:site_URL] %>/<%= @item[:destURL]%>"><%= @item[:pageTitle] %></a> <%= @item[:pageDateUS] %></li>
+        <% end %>
+      </ul>
+      <p><a href="./index.html">All tags</a></p>
+    </div>
+  </section>
+</main>
+<%= footer_partial %>

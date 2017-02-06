@@ -1,0 +1,26 @@
+---
+directories:
+    blog: blog
+    build: build
+    assets: assets
+    posts: posts
+    source: source
+    styles: styles
+    templates: templates
+templates:
+    archive: achive.html.erb
+    default: static.html.erb
+    index: index.html.erb
+    new_post: new_post.md.erb
+    post: post.html.erb
+    tag: tag.html.erb
+options:
+    css_preprocessor: less
+    github_name: mikekreuzer
+    number_items_in_RSS: 7
+    num_items_on_home: 7
+    site_author: Mike Kreuzer
+    site_description: The scribblings of a once and future code monkey
+    site_name: Mike Kreuzer
+    site_URL: https://mikekreuzer.com
+    twitter_name: mikekreuzer

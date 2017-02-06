@@ -1,0 +1,18 @@
+<%= header_partial %>
+<main>
+  <section>
+    <% for @post in data %>
+      <h2><%= @post[:page][:title] %></h2>
+      <p class="date"><%= @post[:page][:date_us] %></p>
+      <%= @post[:html] %>
+      <div class="tags">Tags:
+        <ul>
+          <% for @tag in @post[:page][:tags] %>
+            <li><a href="/tags/<%= @tag[:tag_slug] %>.html"><%= @tag[:name] %></a></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </section>
+</main>
+<%= footer_partial %>

@@ -222,3 +222,20 @@ Two weeks to get the rough structure right, and to get something like a minimum 
 **Links to work**
 
 1. [Tweet](https://twitter.com/mikekreuzer/status/828231071770632193)
+
+### Day 14: February 6, 2017
+
+**Today's Progress**:
+
+- claimed the feed content's xhtml to get it to work, will revisit & fix this with CDATA
+- started testing the engine against old blog posts
+- first code to GitHub
+- gem published
+
+**Thoughts:**
+
+Two weeks, and here's the first cut of code to GitHub & a (slightly) more than just a stub of a gem. Plenty of room to improve, but a nice start.
+
+**Links to work**
+
+To follow
