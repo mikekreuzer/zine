@@ -111,14 +111,22 @@ module Zine
 
     def write_feed
       number = @options['options']['number_items_in_RSS']
-      feed = Zine::Feed.new(@post_array.first(number), @options)
-      feed.process
+      feed_data = { build_dir: @options['directories']['build'],
+                    name: 'rss', title: '', post_array: [] }
+      @post_array.first(number).each do |post|
+        feed_data[:post_array] << { page: post.formatted_data.page,
+                                    html: post.formatted_data.html }
+      end
+      feed = DataPage.new(feed_data, make_template_bundle('rss'),
+                          @options, '.xml')
+      feed.write
     end
 
     def write_homepage
       homepage_data = { build_dir: @options['directories']['build'],
                         name: 'index', title: 'Home', post_array: [] }
       @post_array.first(@options['options']['num_items_on_home']).each do |post|
+        post.formatted_data.page[:uri] = post.formatted_data.uri
         homepage_data[:post_array] << { page: post.formatted_data.page,
                                         html: post.formatted_data.html }
       end

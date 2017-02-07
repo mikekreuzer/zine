@@ -15,6 +15,8 @@ module Zine
     attr_reader :formatted_data
     # the meta data, passed formatted to the template
     class FormattedData
+      include ERB::Util
+
       attr_accessor :data
       attr_accessor :footer_partial
       attr_accessor :header_partial
@@ -32,7 +34,7 @@ module Zine
                   site_name: site_opt['options']['site_name'],
                   site_URL: site_opt['options']['site_URL'],
                   tags: slugify_tags(front_matter['tags']),
-                  title: front_matter['title'],
+                  title: html_escape(front_matter['title']),
                   twitter_name: site_opt['options']['twitter_name'] }
       end
 

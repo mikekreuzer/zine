@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+  xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <author>
+    <name><%= page[:site_author] %></name>
+  </author>
+  <id><%= page[:site_URL] %>/rss.xml</id>
+  <title><%= page[:site_name] %></title>
+  <dc:date><%= data[0][:page][:date_rfc3339] %></dc:date>
+  <updated><%= data[0][:page][:date_rfc3339] %></updated>
+  <% for @post in data %>
+    <entry>
+      <content type="html"><![CDATA[<%= @post[:html] %>]]></content>
+      <id><%= @post[:page][:uri] %></id>
+      <link href="<%= @post[:page][:uri] %>"/>
+      <title><%= @post[:page][:title] %></title>
+      <updated><%= @post[:page][:date_rfc3339] %></updated>
+      <dc:date><%= @post[:page][:date_rfc3339] %></dc:date>
+    </entry>
+  <% end %>
+</feed>
