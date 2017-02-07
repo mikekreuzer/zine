@@ -223,6 +223,8 @@ Two weeks to get the rough structure right, and to get something like a minimum 
 
 1. [Tweet](https://twitter.com/mikekreuzer/status/828231071770632193)
 
+## v0.1.0
+
 ### Day 14: February 6, 2017
 
 **Today's Progress**:
@@ -241,3 +243,20 @@ Two weeks, and here's the first cut of code to GitHub & a (slightly) more than j
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Gem](https://rubygems.org/gems/zine)
 3. [Tweet](https://twitter.com/mikekreuzer/status/828584150479228928)
+
+### Day 15: February 7, 2017
+
+**Today's Progress**:
+
+- RSS now using DataPage & ERB, with CDATA tags
+- added Ruby 2.0 as a minimum to the gemspec
+- version headings added to this log
+
+**Thoughts:**
+
+My thoughts are in the blog post. Happy. :-)
+
+**Links to work**
+
+1. [Blog post](https://mikekreuzer.com/blog/2017/2/two-weeks-of-code.html)
+3. [Tweet](https://twitter.com/mikekreuzer/status/828952725090037760)
