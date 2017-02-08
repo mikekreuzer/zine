@@ -2,7 +2,6 @@ require 'erb'
 require 'rainbow'
 require 'zine/data_page'
 require 'zine/page'
-require 'zine/feed'
 require 'zine/post'
 require 'zine/server'
 require 'zine/tag'
@@ -95,9 +94,10 @@ module Zine
 
     def read_post_markdown_files
       file_name_array = Dir[File.join(@options['directories']['posts'], '*.md')]
+      post_name = @options['templates']['post']
       file_name_array.each do |file|
         @post_array << Zine::Post.new(file,
-                                      make_template_bundle('post'),
+                                      make_template_bundle(post_name),
                                       @options)
       end
     end
@@ -117,7 +117,8 @@ module Zine
         feed_data[:post_array] << { page: post.formatted_data.page,
                                     html: post.formatted_data.html }
       end
-      feed = DataPage.new(feed_data, make_template_bundle('rss'),
+      rss_name = @options['templates']['rss']
+      feed = DataPage.new(feed_data, make_template_bundle(rss_name),
                           @options, '.xml')
       feed.write
     end
@@ -130,7 +131,8 @@ module Zine
         homepage_data[:post_array] << { page: post.formatted_data.page,
                                         html: post.formatted_data.html }
       end
-      home_page = DataPage.new(homepage_data, make_template_bundle('home'),
+      home_name = @options['templates']['home']
+      home_page = DataPage.new(homepage_data, make_template_bundle(home_name),
                                @options)
       home_page.write
     end
@@ -139,13 +141,14 @@ module Zine
       dir_options = @options['directories']
       src_dir = dir_options['source']
       search = File.join src_dir, '**', '*.md'
+      default_name = @options['templates']['default']
       Dir[search].reject { |found| found[dir_options['posts']] }.each do |file|
         dir = Pathname(File.dirname(file)).relative_path_from(Pathname(src_dir))
         file_name = "#{File.basename(file, '.*')}.html"
         dest = File.join dir_options['build'], dir
         FileUtils.mkdir_p dest
         page = Zine::Page.new(file, File.join(dest, file_name),
-                              make_template_bundle('default'), @options)
+                              make_template_bundle(default_name), @options)
         page.process
       end
     end
@@ -155,8 +158,10 @@ module Zine
       @post_array.each do |post|
         tags_by_post << post.process
       end
-      tags = Zine::Tag.new tags_by_post, make_template_bundle('tag'),
-                           make_template_bundle('tag_index'), @options
+      tag_name = @options['templates']['tag']
+      tag_index_name = @options['templates']['tag_index']
+      tags = Zine::Tag.new tags_by_post, make_template_bundle(tag_name),
+                           make_template_bundle(tag_index_name), @options
       tags.write_tags
       write_homepage
     end

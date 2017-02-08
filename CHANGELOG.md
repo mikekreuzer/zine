@@ -259,4 +259,18 @@ My thoughts are in the blog post. Happy. :-)
 **Links to work**
 
 1. [Blog post](https://mikekreuzer.com/blog/2017/2/two-weeks-of-code.html)
-3. [Tweet](https://twitter.com/mikekreuzer/status/828952725090037760)
+2. [Tweet](https://twitter.com/mikekreuzer/status/828952725090037760)
+
+### Day 16: February 8, 2017
+
+**Today's Progress**:
+
+- template names from zine.yaml
+
+**Thoughts:**
+
+A stocktake sort of a day. Need to get some changes back into the templates, then do the articles index. May consolidate the DataPage calls, & maybe get posts out of Site at the same time.
+
+**Links to work**
+
+1. [Tweet](https://twitter.com/mikekreuzer/status/829318150868983808)

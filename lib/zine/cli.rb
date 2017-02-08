@@ -38,7 +38,8 @@ module Zine
       @date = DateTime.now
       @name = name
       file = "#{@date.strftime('%Y-%m-%d')}-#{Zine::Page.slug(name)}.md"
-      template 'new_post.erb',
+      new_post_name = @site.options['templates']['new_post']
+      template new_post_name,
                File.join(Dir.pwd, option_dir['posts'], file)
     end
 

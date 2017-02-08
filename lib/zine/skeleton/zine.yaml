@@ -8,12 +8,14 @@ directories:
     styles: styles
     templates: templates
 templates:
-    archive: achive.html.erb
-    default: static.html.erb
-    index: index.html.erb
-    new_post: new_post.md.erb
-    post: post.html.erb
-    tag: tag.html.erb
+    articles: articles
+    default: default
+    home: home
+    new_post: new_post.erb
+    post: post
+    rss: rss
+    tag: tag
+    tag_index: tag_index
 options:
     css_preprocessor: less
     github_name: mikekreuzer
