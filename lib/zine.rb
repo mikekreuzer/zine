@@ -40,37 +40,33 @@ module Zine
     def build_site
       read_post_markdown_files
       sort_posts_by_date
-      write_posts
+      write_posts_and_headlines
       housekeeping_copy
       write_other_markdown_pages
-      write_feed
       preview
     end
 
     def clean_option_paths
+      directories = @options['directories']
       %w(assets posts styles templates).each do |dir|
-        @options['directories'][dir] =
-          File.join @options['directories']['source'],
-                    @options['directories'][dir]
+        directories[dir] = File.join directories['source'], directories[dir]
       end
-      @options['directories']['blog'] =
-        File.join @options['directories']['build'],
-                  @options['directories']['blog']
+      directories['blog'] = File.join directories['build'], directories['blog']
     end
 
     def housekeeping_copy
-      src_dir = @options['directories']['source']
+      directories = @options['directories']
+      src_dir = directories['source']
       search = File.join src_dir, '**', '*.*'
-      dir_options = @options['directories']
       possible = Dir.glob(search, File::FNM_DOTMATCH).reject do |found|
         found =~ /^.+\.md$|^.+\.erb$|^\.DS_Store$|^\.$|^\.\.$'/ ||
-          File.directory?(found) || found[dir_options['posts']] ||
-          found[dir_options['templates']]
+          File.directory?(found) || found[directories['posts']] ||
+          found[directories['templates']]
       end
       possible.each do |file|
         dir = Pathname(File.dirname(file)).relative_path_from(Pathname(src_dir))
         filename = File.basename file
-        dest = File.join @options['directories']['build'], dir
+        dest = File.join directories['build'], dir
         FileUtils.mkdir_p dest
         FileUtils.cp file, File.join(dest, filename)
       end
@@ -109,32 +105,38 @@ module Zine
       @post_array.freeze
     end
 
-    def write_feed
-      number = @options['options']['number_items_in_RSS']
-      feed_data = { build_dir: @options['directories']['build'],
-                    name: 'rss', title: '', post_array: [] }
-      @post_array.first(number).each do |post|
-        feed_data[:post_array] << { page: post.formatted_data.page,
-                                    html: post.formatted_data.html }
-      end
-      rss_name = @options['templates']['rss']
-      feed = DataPage.new(feed_data, make_template_bundle(rss_name),
-                          @options, '.xml')
-      feed.write
+    def headline_pages
+      dir = @options['directories']['build']
+      options = @options['options']
+      templates = @options['templates']
+      [{ build_dir: dir, name: 'articles', number: @post_array.size,
+         suffix: '.html', template_name: templates['articles'],
+         title: 'Articles' },
+       { build_dir: dir, name: 'index',
+         number: options['num_items_on_home'], suffix: '.html',
+         template_name: templates['home'], title: 'Home' },
+       { build_dir: dir, name: 'rss',
+         number: options['number_items_in_RSS'], suffix: '.xml',
+         template_name: templates['rss'], title: '' }]
     end
 
-    def write_homepage
-      homepage_data = { build_dir: @options['directories']['build'],
-                        name: 'index', title: 'Home', post_array: [] }
-      @post_array.first(@options['options']['num_items_on_home']).each do |post|
-        post.formatted_data.page[:uri] = post.formatted_data.uri
-        homepage_data[:post_array] << { page: post.formatted_data.page,
-                                        html: post.formatted_data.html }
+    def wrangle_headlines
+      headline_pages.each do |page|
+        write_headline page
       end
-      home_name = @options['templates']['home']
-      home_page = DataPage.new(homepage_data, make_template_bundle(home_name),
-                               @options)
-      home_page.write
+    end
+
+    def write_headline(page)
+      data = page
+      data[:post_array] = []
+      @post_array.first(page[:number]).each do |post|
+        post_data = post.formatted_data
+        data[:post_array] << { page: post_data.page, html: post_data.html,
+                               uri:  post_data.uri }
+      end
+      data_page = DataPage.new(data, make_template_bundle(data[:template_name]),
+                               @options, data[:suffix])
+      data_page.write
     end
 
     def write_other_markdown_pages
@@ -153,7 +155,7 @@ module Zine
       end
     end
 
-    def write_posts
+    def write_posts_and_headlines
       tags_by_post = []
       @post_array.each do |post|
         tags_by_post << post.process
@@ -163,7 +165,7 @@ module Zine
       tags = Zine::Tag.new tags_by_post, make_template_bundle(tag_name),
                            make_template_bundle(tag_index_name), @options
       tags.write_tags
-      write_homepage
+      wrangle_headlines
     end
   end
 end

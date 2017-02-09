@@ -21,7 +21,7 @@ module Zine
       attr_accessor :footer_partial
       attr_accessor :header_partial
       attr_accessor :html
-      attr_reader :page
+      attr_reader   :page
       attr_accessor :uri
 
       def initialize(front_matter, site_opt)
@@ -38,8 +38,8 @@ module Zine
                   twitter_name: site_opt['options']['twitter_name'] }
       end
 
-      def parse_date(_d)
-        DateTime.rfc3339(front_matter['date']).strftime('%B %-d, %Y')
+      def parse_date(front_matter_date)
+        DateTime.rfc3339(front_matter_date).strftime('%B %-d, %Y')
       rescue
         ''
       end

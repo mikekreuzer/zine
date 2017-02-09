@@ -10,6 +10,9 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   </head>
   <body>
+    <div id="skiptocontent">
+      <a href="#maincontent">Skip to main content</a>
+    </div>
     <header>
       <div class="logo"></div>
       <h1><a href="<%= page[:site_URL] %>"><%= page[:site_name] %></a></h1>
@@ -21,3 +24,4 @@
         </ul><a href="https://twitter.com/<%= page[:twitter_name] %>" class="button twitter">Argue with me on Twitter</a><a href="<%= page[:site_URL] %>/rss.xml" rel="home" type="application/rss+xml" class="button rss">RSS Feed</a>
       </nav>
     </header>
+    <a name="maincontent"></a>

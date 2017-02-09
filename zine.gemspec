@@ -10,7 +10,8 @@ Gem::Specification.new do |spec|
   spec.email         = ['mike@mikekreuzer.com']
 
   spec.summary       = 'Yet another blog aware static site generator.'
-  # spec.description   = %q{TODO: Write a longer description or delete.}
+  spec.description   = 'Yet another blog aware static site generator.
+These are the very early days of zine, expect breaking changes.'
   spec.homepage      = 'https://github.com/mikekreuzer/zine'
   spec.license       = 'MIT'
 
@@ -26,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'simplecov', '~> 0.12'
 
+  # spec.add_dependency 'concurrent-ruby', '~> 1.0', '>= 1.0.2'
   spec.add_dependency 'htmlcompressor', '~> 0.3'
   spec.add_dependency 'kramdown', '~> 1.13'
   spec.add_dependency 'rainbow', '~> 2.2'

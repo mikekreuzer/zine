@@ -259,7 +259,8 @@ My thoughts are in the blog post. Happy. :-)
 **Links to work**
 
 1. [Blog post](https://mikekreuzer.com/blog/2017/2/two-weeks-of-code.html)
-2. [Tweet](https://twitter.com/mikekreuzer/status/828952725090037760)
+2. [Repo](https://github.com/mikekreuzer/zine)
+3. [Tweet](https://twitter.com/mikekreuzer/status/828952725090037760)
 
 ### Day 16: February 8, 2017
 
@@ -273,4 +274,27 @@ A stocktake sort of a day. Need to get some changes back into the templates, the
 
 **Links to work**
 
-1. [Tweet](https://twitter.com/mikekreuzer/status/829318150868983808)
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet](https://twitter.com/mikekreuzer/status/829318150868983808)
+
+## v0.2.0
+
+### Day 17: February 9, 2017
+
+**Today's Progress**:
+
+- consolidated the DataPage calls in the Site class (the home page, feed, and now added an articles/archive index to that)
+- added 'skip to main content' back into the header partial
+- some bug fixes & minor refactoring
+- version 0.2.0
+
+**Thoughts:**
+
+Played around with the concurrent-ruby gem - seems promising, inspired by Erlang it's got a lot in common with Elixir... but it doesn't work to just fling the local server into the background with async, & Thin itself uses EventMachine...
+
+Was listening in on RubyConf_au going on in the background on Twitter all day -- inspirational. Couldn't wait to start my hour of coding, even more than usual. :-)
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Gem](https://rubygems.org/gems/zine)

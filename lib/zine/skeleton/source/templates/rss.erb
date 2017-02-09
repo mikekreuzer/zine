@@ -11,8 +11,8 @@
   <% for @post in data %>
     <entry>
       <content type="html"><![CDATA[<%= @post[:html] %>]]></content>
-      <id><%= @post[:page][:uri] %></id>
-      <link href="<%= @post[:page][:uri] %>"/>
+      <id><%= @post[:uri] %></id>
+      <link href="<%= @post[:uri] %>"/>
       <title><%= @post[:page][:title] %></title>
       <updated><%= @post[:page][:date_rfc3339] %></updated>
       <dc:date><%= @post[:page][:date_rfc3339] %></dc:date>

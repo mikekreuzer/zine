@@ -1,0 +1,12 @@
+<%= header_partial %>
+<main>
+  <section>
+    <h2>Previously...</h2>
+    <ul>
+    <% for @post in data %>
+      <li><p><a href="<%= @post[:uri] %>"><%= @post[:page][:title] %></a> &mdash; <%= @post[:page][:date_us] %></p></li>
+    <% end %>
+  </ul>
+  </section>
+</main>
+<%= footer_partial %>
