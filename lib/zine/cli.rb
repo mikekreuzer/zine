@@ -3,6 +3,7 @@ require 'rainbow'
 require 'time'
 require 'yaml'
 require 'zine'
+require 'zine/style'
 require 'zine/version'
 
 module Zine
@@ -48,6 +49,14 @@ module Zine
       @skeleton_dir = File.join File.dirname(__FILE__), 'skeleton', '/.'
       FileUtils.cp_r @skeleton_dir, Dir.pwd
       puts Rainbow('New skeleton site created').green
+    end
+
+    desc 'style', 'Build the site\'s stylesheet'
+    def style
+      init_site
+      style = Zine::Style.new(@site.options['directories'])
+      style.process
+      puts Rainbow('Stylesheet rendered').green
     end
 
     desc 'version', 'Show the version number'

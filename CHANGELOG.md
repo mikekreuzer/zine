@@ -299,3 +299,21 @@ Was listening in on RubyConf_au going on in the background on Twitter all day --
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Gem](https://rubygems.org/gems/zine)
 3. [Tweet](https://twitter.com/mikekreuzer/status/829677797241090050)
+
+### Day 18: February 10, 2017
+
+**Today's Progress**:
+
+- PostsAndHeadlines class extracted from Site
+- CSS preprocessing with Sass added (LibSass and SassC)
+- messing about with styles
+- some minor refactoring & doc work
+
+**Thoughts:**
+
+Now well behind with testing, will need to concentrate on that soon.
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet](https://twitter.com/mikekreuzer/status/830034964393529345)

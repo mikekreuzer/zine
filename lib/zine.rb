@@ -1,12 +1,9 @@
 require 'erb'
 require 'rainbow'
-require 'zine/data_page'
 require 'zine/page'
-require 'zine/post'
+require 'zine/posts_and_headlines'
 require 'zine/server'
-require 'zine/tag'
 require 'zine/templates'
-require 'zine/version'
 
 module Zine
   # the site
@@ -14,11 +11,9 @@ module Zine
     attr_reader :options
 
     def initialize
-      @post_array = []
       @templates_by_name = {}
       init_options
       clean_option_paths
-      init_templates
     end
 
     def init_options
@@ -38,8 +33,7 @@ module Zine
     end
 
     def build_site
-      read_post_markdown_files
-      sort_posts_by_date
+      init_templates
       write_posts_and_headlines
       housekeeping_copy
       write_other_markdown_pages
@@ -88,57 +82,7 @@ module Zine
       Server.new File.absolute_path(@options['directories']['build'])
     end
 
-    def read_post_markdown_files
-      file_name_array = Dir[File.join(@options['directories']['posts'], '*.md')]
-      post_name = @options['templates']['post']
-      file_name_array.each do |file|
-        @post_array << Zine::Post.new(file,
-                                      make_template_bundle(post_name),
-                                      @options)
-      end
-    end
-
-    def sort_posts_by_date
-      @post_array.sort_by! do |post|
-        post.formatted_data.page[:date_rfc3339]
-      end.reverse!
-      @post_array.freeze
-    end
-
-    def headline_pages
-      dir = @options['directories']['build']
-      options = @options['options']
-      templates = @options['templates']
-      [{ build_dir: dir, name: 'articles', number: @post_array.size,
-         suffix: '.html', template_name: templates['articles'],
-         title: 'Articles' },
-       { build_dir: dir, name: 'index',
-         number: options['num_items_on_home'], suffix: '.html',
-         template_name: templates['home'], title: 'Home' },
-       { build_dir: dir, name: 'rss',
-         number: options['number_items_in_RSS'], suffix: '.xml',
-         template_name: templates['rss'], title: '' }]
-    end
-
-    def wrangle_headlines
-      headline_pages.each do |page|
-        write_headline page
-      end
-    end
-
-    def write_headline(page)
-      data = page
-      data[:post_array] = []
-      @post_array.first(page[:number]).each do |post|
-        post_data = post.formatted_data
-        data[:post_array] << { page: post_data.page, html: post_data.html,
-                               uri:  post_data.uri }
-      end
-      data_page = DataPage.new(data, make_template_bundle(data[:template_name]),
-                               @options, data[:suffix])
-      data_page.write
-    end
-
+    # TODO: structure in common with housekeeping_copy
     def write_other_markdown_pages
       dir_options = @options['directories']
       src_dir = dir_options['source']
@@ -156,16 +100,8 @@ module Zine
     end
 
     def write_posts_and_headlines
-      tags_by_post = []
-      @post_array.each do |post|
-        tags_by_post << post.process
-      end
-      tag_name = @options['templates']['tag']
-      tag_index_name = @options['templates']['tag_index']
-      tags = Zine::Tag.new tags_by_post, make_template_bundle(tag_name),
-                           make_template_bundle(tag_index_name), @options
-      tags.write_tags
-      wrangle_headlines
+      posts = Zine::PostsAndHeadlines.new self, @options
+      posts.write
     end
   end
 end

@@ -1,0 +1,282 @@
+$blue: #414f7c;
+$darkGrey: #333;
+$mediumGrey: #667;
+$lightGrey: #ddd;
+$black: #212721;
+$white: #fff;
+$offWhite: #eee;
+
+$backgroundColour: $white;
+$codeBackgroundColour: $offWhite;
+$headingColour: $darkGrey;
+$textColour: $darkGrey;
+$linkColour: $blue;
+$hoverColour: $black;
+$metaAndFooterColour: $mediumGrey;
+$borderColour: $lightGrey;
+
+$desktopWidth: 43em;
+$lightWeight: 300;
+$heavyWeight: 400;
+
+$regularFont: GillSansRegular, 'Gill Sans MT', 'Gill Sans', 'Century Gothic', Calibri, 'Trebuchet MS', sans-serif;
+$monoFont: Consolas, Menlo, Monaco, 'Lucida Console', 'Courier New', monospace, serif;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body { height: 100%; }
+
+body {
+  background-color: $backgroundColour;
+  font-family: $regularFont;
+  line-height: 1.618;
+  color: $textColour;
+  text-align: center;
+  font-weight: $lightWeight;
+}
+
+#skiptocontent {
+  height: 1px;
+  width: 1px;
+  position: absolute;
+  overflow: hidden;
+  top: -10px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	color: $headingColour;
+    letter-spacing: 0.1em;
+    a {
+        color: $linkColour;
+        text-decoration: none;
+    }
+    a:hover {
+        color: $hoverColour;
+    }
+}
+
+h1 {
+    font-weight: $lightWeight;
+    font-size: 2.618em;
+    margin: 1.809em 0 0.809em;
+}
+
+h2 {
+    font-weight: $lightWeight;
+    font-size: 1.618em;
+    margin: 1.809em 0 0.809em;
+}
+
+h3, h4, h5, h6 {
+    font-weight: $heavyWeight;
+    font-size: 1em;
+    margin: 1.809em 0 0.809em;
+}
+
+p {
+  margin: 1em 0;
+}
+
+a { color:$linkColour; }
+a:hover   { color: $hoverColour; }
+
+/* Home */
+section {
+    margin-bottom: 1.618em;
+}
+
+section > section {
+    margin-bottom: 3.236em;
+}
+
+/* Site */
+body > header {
+  width: $desktopWidth;
+  text-align: center;
+  margin: 0 auto 0;
+}
+
+body > header a {
+    text-decoration: none;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+body > header, body > main, body > footer {
+    display: block;
+}
+
+body > header a {
+    color: $linkColour;
+}
+
+body > header a:hover {
+  color: $hoverColour;
+}
+
+body > header a.extra {
+  color: $linkColour;
+  margin-left: 1em;
+}
+
+body > header a.extra:hover {
+  color: $hoverColour;
+}
+
+body > header nav ul li {
+  display: inline;
+  list-style: none;
+}
+
+.button {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    background-size: 100%;
+    text-indent: -999em;
+    text-align: left;
+    margin: 20px;
+}
+
+.twitter {
+    background: url('/assets/webicon-twitter-m.png');
+    background-image: url('/assets/webicon-twitter.svg'), none;
+}
+
+.rss {
+    background: url('/assets/webicon-rss-m.png');
+    background-image: url('/assets/webicon-rss.svg'), none;
+}
+
+main {
+  text-align: left;
+  width: $desktopWidth;
+  margin: 3em auto 2em;
+}
+
+main li {
+    margin-left: 2.618em;
+}
+
+.meta {
+  color: $metaAndFooterColour;
+}
+
+footer {
+  width: $desktopWidth;
+  color: $metaAndFooterColour;
+  border-top: 4px solid $borderColour;
+  margin: 3em auto 2em;
+  overflow: hidden;
+}
+
+footer .contact {
+  float: left;
+  margin-right: 3em;
+}
+
+footer .contact a, .tags a { color:$linkColour; text-decoration: none; }
+footer .contact a:hover, .tags a:hover   { color:$hoverColour; text-decoration: none; }
+
+.tags ul li {
+    list-style: none;
+    display: inline;
+    font-variant: small-caps;
+    font-size:1.2em;
+}
+
+.archive a {
+    text-decoration: none;
+}
+
+ul.archive, ul.archive ul {
+    margin-left: 0;
+}
+
+ul.archive li, ul.archive ul li {
+    list-style: none;
+    margin-left: 0;
+}
+
+/*footer .rss {
+  margin-top: 1.1em;
+  margin-right: -.2em;
+  float: right;
+}
+
+footer .rss img {
+  border: 0;
+}*/
+
+/* Posts */
+
+/* standard */
+.post pre {
+  border: 1px solid $borderColour;
+  background-color: $backgroundColour;
+  padding: 0 .4em;
+}
+
+
+p.date {
+    color: $mediumGrey;
+}
+
+/*.post ul, .post ol {
+  margin-left: 1.35em;
+}*/
+
+pre {
+    background-color: $codeBackgroundColour;
+    padding: 1em;
+    white-space: pre-wrap;
+    /* why necessary */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;
+}
+
+code {
+  font-family: $monoFont;
+  font-size: 0.8em;
+}
+
+/* terminal
+.post pre.terminal {
+  border: 1px solid $borderColour;
+  background-color: $codeBackgroundColour;
+  color: $textColour;
+}
+
+.post pre.terminal code {
+  background-color: $codeBackgroundColour;
+}*/
+
+/* quotes */
+blockquote {
+  margin: 2em 2em 2em 1em;
+  padding: 0 .75em 0 1.25em;
+  border-left: 2px solid $borderColour;
+  border-right: 0px solid $borderColour;
+}
+
+@media all and (max-width: 736px) {
+    /* was max-device-width: 1242px */
+	body > header, main, footer {
+      width:86%;
+      margin: 0 auto 0;
+      padding: 12px 24px 12px;
+	}
+  p {
+    margin-bottom:2em;
+  }
+  .button {
+    width: 50px;
+    height: 50px;
+    margin: 20px;
+  }
+}

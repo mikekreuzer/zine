@@ -35,7 +35,7 @@ To set up a new blog post:
 $ zine post 'Your chosen title'
 ```
 
-Your new post will have some fields set up in the YAML front matter, feel free to edit them too.
+Your new post will have some fields set up in the YAML front matter, feel free to edit them too. Markdown files you create outside of the posts folder will be rendered into HTML in the same relative position in the build folder.
 
 Once you're done writing, build your new site:
 
@@ -45,17 +45,24 @@ $ zine build
 
 ### Halp!
 
-To see the options available:
+To see the options available type zine & hit enter:
 
 ```shell
 $ zine
+Commands:
+  zine build           # Build the site
+  zine help [COMMAND]  # Describe available commands or one specific command
+  zine nuke            # Delete the build folder
+  zine post TITLE      # Create the file for a new blog post, titled TITLE
+  zine site            # Create the skeleton of a new site (overwriting files)
+  zine style           # Build the site's stylesheet
+  zine version         # Show the version number
 ```
 
 ### Up next
 
 This is only a first cut at this gem, the stuff I considered a (barely) minimum viable product. Up next are:
 
-- CSS preprocessing
 - file watching
 - migration scripts from eg Jekyll? Maybe.
 - Apple News
