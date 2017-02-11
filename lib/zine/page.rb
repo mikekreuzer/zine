@@ -12,7 +12,7 @@ module Zine
   # A page on the site where the content comes from a file's markdown, and the
   # destination's location mirrors its own
   class Page
-    attr_reader :formatted_data
+    attr_reader :formatted_data, :source_file, :template_bundle
     # the meta data, passed formatted to the template
     class FormattedData
       include ERB::Util
@@ -59,6 +59,7 @@ module Zine
                          :pageDateUS)
 
     def initialize(md_file_name, dest, templates, site_options)
+      @source_file = md_file_name
       file_parts = File.open(md_file_name, 'r').read.split('---')
       @formatted_data = FormattedData.new(parse_yaml(file_parts[1]),
                                           site_options)
@@ -71,6 +72,7 @@ module Zine
       @header_partial = templates.header
       @footer_partial = templates.footer
       @template = templates.body
+      @template_bundle = templates
     end
 
     def parse_markdown
@@ -81,6 +83,7 @@ module Zine
         smart_quotes: %w(apos apos quot quot),
         syntax_highlighter: 'rouge'
       ).to_html
+      @raw_text = nil
     end
 
     def parse_yaml(text)

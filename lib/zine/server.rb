@@ -1,13 +1,17 @@
 require 'rainbow'
 require 'rack'
 require 'thin'
+require 'zine/watcher'
 
 module Zine
   # Local preview web server
   class Server
-    def initialize(root)
+    def initialize(posts, rel_path_build, rel_path_source)
+      root = File.absolute_path(rel_path_build)
       motd
-      Thin::Server.start('127.0.0.1', 8080) do
+      start_file_watcher(posts, rel_path_build, rel_path_source)
+
+      @thin = Thin::Server.new('127.0.0.1', 8080) do
         use Rack::Static,
             urls: ['/'],
             index: 'index.html',
@@ -29,6 +33,17 @@ module Zine
            File.open(File.join(root, 'index.html'), File::RDONLY)]
         }
       end
+      @thin.start
+
+      # TODO: SFTP
+      puts 'TODO: uploads...'
+      puts 'Up:', @guard.upload_array.inspect
+      puts 'Delete:', @guard.delete_array.inspect
+    end
+
+    def start_file_watcher(posts, rel_build, rel_source)
+      @guard = Zine::Watcher.new posts, rel_build, rel_source
+      @guard.start
     end
 
     def motd

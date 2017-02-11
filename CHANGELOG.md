@@ -317,3 +317,19 @@ Now well behind with testing, will need to concentrate on that soon.
 
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Tweet](https://twitter.com/mikekreuzer/status/830034964393529345)
+
+### Day 19: February 11, 2017
+
+**Today's Progress**:
+
+- watching the Markdown files for changes with Listener
+- started on incremental builds
+
+**Thoughts:**
+
+A productive evening, despite spending a lot of time breaking my brain trying to work around the Guard gem. Incremental builds are on the way (deleted files I'm, still to do), then on to live reloads and SFTP uploads (I think).
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet](https://twitter.com/mikekreuzer/status/830414957745369088)

@@ -4,6 +4,7 @@ module Zine
   # A post - content comes from the markdown, and the destination from the date
   class Post < Page
     def initialize(md_file_name, templates, site_options)
+      @source_file = md_file_name
       file_parts = File.open(md_file_name, 'r').read.split('---')
       @formatted_data = FormattedData.new(parse_yaml(file_parts[1]),
                                           site_options)

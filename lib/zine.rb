@@ -34,10 +34,10 @@ module Zine
 
     def build_site
       init_templates
-      write_posts_and_headlines
+      posts = write_posts_and_headlines
       housekeeping_copy
       write_other_markdown_pages
-      preview
+      preview posts
     end
 
     def clean_option_paths
@@ -78,8 +78,20 @@ module Zine
       )
     end
 
-    def preview
-      Server.new File.absolute_path(@options['directories']['build'])
+    def preview(posts)
+      Server.new posts,
+                 @options['directories']['build'],
+                 @options['directories']['source']
+    end
+
+    def write_markdown(default_name, src_dir, file)
+      dir = Pathname(File.dirname(file)).relative_path_from(Pathname(src_dir))
+      file_name = "#{File.basename(file, '.*')}.html"
+      dest = File.join @options['directories']['build'], dir
+      FileUtils.mkdir_p dest
+      page = Zine::Page.new(file, File.join(dest, file_name),
+                            make_template_bundle(default_name), @options)
+      page.process
     end
 
     # TODO: structure in common with housekeeping_copy
@@ -89,19 +101,15 @@ module Zine
       search = File.join src_dir, '**', '*.md'
       default_name = @options['templates']['default']
       Dir[search].reject { |found| found[dir_options['posts']] }.each do |file|
-        dir = Pathname(File.dirname(file)).relative_path_from(Pathname(src_dir))
-        file_name = "#{File.basename(file, '.*')}.html"
-        dest = File.join dir_options['build'], dir
-        FileUtils.mkdir_p dest
-        page = Zine::Page.new(file, File.join(dest, file_name),
-                              make_template_bundle(default_name), @options)
-        page.process
+        write_markdown(default_name, src_dir, file)
       end
     end
 
+    # returns the class instance to use during edits under preview
     def write_posts_and_headlines
       posts = Zine::PostsAndHeadlines.new self, @options
       posts.write
+      posts
     end
   end
 end

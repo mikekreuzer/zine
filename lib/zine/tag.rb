@@ -8,6 +8,7 @@ module Zine
       @posts_by_tag = sort_tags tags_by_post
       @templates = { tag: tag_templates, tag_index: tag_index_templates }
       @tag_dir = File.join @options['directories']['build'], 'tags'
+      FileUtils.remove_dir @tag_dir, force: true
       FileUtils.mkdir_p @tag_dir
     end
 
