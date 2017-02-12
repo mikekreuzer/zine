@@ -15,6 +15,14 @@ module Zine
       sort_posts_by_date
     end
 
+    def find_page_from_path(file_path)
+      post_to_rebuild = @post_array.detect do |post|
+        File.expand_path(post.source_file) == file_path
+      end
+      index = @post_array.find_index post_to_rebuild
+      { post: post_to_rebuild, index: index }
+    end
+
     # The headlines pages - the home page, an articles index, and RSS feed
     def headline_pages
       dir = @options['directories']['build']
@@ -31,20 +39,30 @@ module Zine
          template_name: templates['rss'], title: '' }]
     end
 
-    # TODO: deletes
+    # get build file from post or location, delete build, remove form post_array
     def preview_delete(file_path)
-      puts 'TODO: posts delete!', file_path
+      page = find_page_from_path file_path
+      if page[:index].nil?
+        directories = @options['directories']
+        full = Pathname(file_path)
+        relative = full.relative_path_from(
+          Pathname(File.absolute_path(directories['source']))
+        )
+        relative_path = File.dirname(relative)
+        file = File.basename(relative, '.md') + '.html'
+        File.delete(File.join(directories['build'], relative_path, file))
+      else
+        File.delete(page[:post].dest_path)
+        @post_array.delete_at(page[:index])
+      end
     end
 
     def preview_rebuild(file_path)
-      post_to_rebuild = @post_array.detect do |post|
-        File.expand_path(post.source_file) == file_path
-      end
-      index = @post_array.find_index post_to_rebuild
-      if index.nil?
+      page = find_page_from_path file_path
+      if page[:index].nil?
         rebuild_page(file_path)
       else
-        rebuild_post(post_to_rebuild, index)
+        rebuild_post(page[:post], page[:index])
       end
     end
 

@@ -1,12 +1,14 @@
+require 'highline'
 require 'rainbow'
 require 'rack'
 require 'thin'
+require 'zine/upload'
 require 'zine/watcher'
 
 module Zine
   # Local preview web server
   class Server
-    def initialize(posts, rel_path_build, rel_path_source)
+    def initialize(posts, rel_path_build, rel_path_source, upload_options)
       root = File.absolute_path(rel_path_build)
       motd
       start_file_watcher(posts, rel_path_build, rel_path_source)
@@ -35,10 +37,26 @@ module Zine
       end
       @thin.start
 
-      # TODO: SFTP
-      puts 'TODO: uploads...'
-      puts 'Up:', @guard.upload_array.inspect
-      puts 'Delete:', @guard.delete_array.inspect
+      return if upload_options['method'] == 'none'
+      cli = HighLine.new
+      answer = cli.ask('Upload files? (Y/n)') { |q| q.default = 'Y' }
+      return if answer != 'Y'
+      file_upload upload_options
+    end
+
+    # deploy via SFTP
+    def file_upload(upload_options)
+      puts Rainbow('Connecting...').green
+      upload = Zine::Upload.new upload_options
+      begin
+        upload.delete @guard.delete_array
+        upload.deploy @guard.upload_array
+      rescue Errno::ENETUNREACH
+        puts Rainbow("Unable to connect to #{upload_options['host']}").red
+      rescue Net::SSH::AuthenticationFailed
+        puts Rainbow("Authentication failed for #{upload_options['host']}").red
+        puts 'Check your credential file, and maybe run ssh-add?'
+      end
     end
 
     def start_file_watcher(posts, rel_build, rel_source)

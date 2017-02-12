@@ -81,7 +81,8 @@ module Zine
     def preview(posts)
       Server.new posts,
                  @options['directories']['build'],
-                 @options['directories']['source']
+                 @options['directories']['source'],
+                 @options['upload']
     end
 
     def write_markdown(default_name, src_dir, file)

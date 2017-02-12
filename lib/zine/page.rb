@@ -12,7 +12,7 @@ module Zine
   # A page on the site where the content comes from a file's markdown, and the
   # destination's location mirrors its own
   class Page
-    attr_reader :formatted_data, :source_file, :template_bundle
+    attr_reader :dest_path, :formatted_data, :source_file, :template_bundle
     # the meta data, passed formatted to the template
     class FormattedData
       include ERB::Util
@@ -28,6 +28,7 @@ module Zine
         @page = { date_rfc3339: front_matter['date'],
                   date_us: parse_date(front_matter['date']),
                   github_name: site_opt['options']['github_name'],
+                  links_array: site_opt['links'],
                   num_items_on_home: site_opt['options']['num_items_on_home'],
                   site_author: site_opt['options']['site_author'],
                   site_description: site_opt['options']['site_description'],
@@ -61,7 +62,8 @@ module Zine
     def initialize(md_file_name, dest, templates, site_options)
       @source_file = md_file_name
       file_parts = File.open(md_file_name, 'r').read.split('---')
-      @formatted_data = FormattedData.new(parse_yaml(file_parts[1]),
+      @formatted_data = FormattedData.new(parse_yaml(file_parts[1],
+                                                     md_file_name),
                                           site_options)
       @dest_path = dest
       @raw_text = file_parts[2]
@@ -86,7 +88,7 @@ module Zine
       @raw_text = nil
     end
 
-    def parse_yaml(text)
+    def parse_yaml(text, md_file_name)
       YAML.safe_load text
     rescue Psych::Exception
       puts Rainbow("Could not parse front matter for: #{md_file_name}").red

@@ -1,28 +1,41 @@
 ---
 directories:
-    blog: blog
-    build: build
-    assets: assets
-    posts: posts
-    source: source
-    styles: styles
-    templates: templates
-templates:
-    articles: articles
-    default: default
-    home: home
-    new_post: new_post.erb
-    post: post
-    rss: rss
-    tag: tag
-    tag_index: tag_index
+  assets: assets
+  blog: blog
+  build: build
+  posts: posts
+  source: source
+  styles: styles
+  templates: templates
+links:
+  -
+    name: GitHub
+    uri: https://github.com/mikekreuzer
+  -
+    name: Ripley
+    uri: https://mikekreuzer.github.io/Ripley/
 options:
-    css_preprocessor: less
-    github_name: mikekreuzer
-    number_items_in_RSS: 7
-    num_items_on_home: 7
-    site_author: Mike Kreuzer
-    site_description: The scribblings of a once and future code monkey
-    site_name: Mike Kreuzer
-    site_URL: https://mikekreuzer.com
-    twitter_name: mikekreuzer
+  css_preprocessor: less
+  github_name: mikekreuzer
+  number_items_in_RSS: 7
+  num_items_on_home: 7
+  site_author: Mike Kreuzer
+  site_description: The scribblings of a once and future code monkey
+  site_name: Mike Kreuzer
+  site_URL: https://mikekreuzer.com
+  twitter_name: mikekreuzer
+templates:
+  articles: articles
+  default: default
+  home: home
+  new_post: new_post.erb
+  post: post
+  rss: rss
+  tag: tag
+  tag_index: tag_index
+upload:
+  credentials: /local/absolute/path/to/yaml/file/with/username/and/password
+  host: 127.0.0.1
+  method: none|sftp
+  path: /remote/absolute/path/to/html
+  verbose: true

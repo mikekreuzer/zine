@@ -9,6 +9,13 @@ These are the very early days of zine, expect breaking changes.
 
 Written in a #100DaysOfCode challenge -- my [progress log's here](CHANGELOG.md). Despite the [proliferation in these things][engine_list] (450!) I still find it more comfortable to use my own tools.
 
+Distinguishing features include:
+
+- ERB templates
+- Sass stylesheets
+- fast incremental builds
+- SFTP file uploads
+
 Presented here in the hope it's of use to someone else too.
 
 ## Installation
@@ -19,13 +26,13 @@ Install the gem.
 $ gem install zine
 ```
 
-Then generate a new site scaffold, cd to a new folder and:
+To generate a new site scaffold, cd to a new folder and:
 
 ```shell
 $ zine site
 ```
 
-Then update your site's name, your name & so on in zine.yaml.
+Then update your site's name, your name & so on in zine.yaml. Pay particular care to the Upload section, if you want to use Zine as an SFTP uploader to deploy files that've changed, you'll need to edit this section to include your remote server's details, as well as the path to a YAML file with your username & password (nil for that if you're using SSH without a password).
 
 ## Day to day usage
 
@@ -42,6 +49,10 @@ Once you're done writing, build your new site:
 ```shell
 $ zine build
 ```
+
+## Design & development
+
+Typing <code>zine style</code> will render the Sass file into CSS. The templates are all editable, as are the files' names, which you can change in the options file.
 
 ### Halp!
 
@@ -63,10 +74,8 @@ Commands:
 
 This is only a first cut at this gem, the stuff I considered a (barely) minimum viable product. Up next are:
 
-- file watching
 - migration scripts from eg Jekyll? Maybe.
 - Apple News
-- SSH uploads, as well as
 - much refactoring
 - docs
 - tests, lots of tests

@@ -1,11 +1,20 @@
   <footer>
-    <div class="contact">
+    <div class="column">
+      <h3>Contact me</h3>
       <p>Twitter:&nbsp;<a href="https://twitter.com/<%= page[:twitter_name] %>">@<%= page[:twitter_name] %></a></p>
     </div>
-    <div class="contact">
-      <p>&copy; 2017<span> <%= page[:site_author] %></span>
-      </p>
+    <div class="column">
+      <h3>Me elsewhere</h3>
+      <ul>
+      <% for @link in page[:links_array] %>
+        <li><a href="<%= @link['uri'] %>"><%= @link['name'] %></a></li>
+      <% end %>
+    </ul>
     </div>
+    <div class="column">
+      <h3>The fine print</h3>
+      <p>&copy; 2017<span> <%= page[:site_author] %></span></p>
+    <div>
   </footer>
   </body>
 </html>

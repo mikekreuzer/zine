@@ -6,7 +6,8 @@ module Zine
     def initialize(md_file_name, templates, site_options)
       @source_file = md_file_name
       file_parts = File.open(md_file_name, 'r').read.split('---')
-      @formatted_data = FormattedData.new(parse_yaml(file_parts[1]),
+      @formatted_data = FormattedData.new(parse_yaml(file_parts[1],
+                                                     md_file_name),
                                           site_options)
       @raw_text = file_parts[2]
       init_templates(templates)

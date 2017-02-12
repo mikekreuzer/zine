@@ -327,9 +327,28 @@ Now well behind with testing, will need to concentrate on that soon.
 
 **Thoughts:**
 
-A productive evening, despite spending a lot of time breaking my brain trying to work around the Guard gem. Incremental builds are on the way (deleted files I'm, still to do), then on to live reloads and SFTP uploads (I think).
+A productive evening, despite spending a lot of time breaking my brain trying to work around the Guard gem. Incremental builds are on the way (deleted files I'm still to do), then on to live reloads and SFTP uploads (I think).
 
 **Links to work**
 
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Tweet](https://twitter.com/mikekreuzer/status/830414957745369088)
+
+### Day 20: February 12, 2017
+
+**Today's Progress**:
+
+- added SFTP uploads of the files that changed, which includes (and it warrants a line)...
+- my own homegrown (& no doubt pretty rough) SFTP version of mkdir_p
+- incremental builds handle Markdown file deletions now
+- rearranged the zine.yaml preferences file to accommodate file transfers
+- added footer links via zine.yaml, tweaking the style & templates a little
+
+**Thoughts:**
+
+Writing the remote version of mkdir_p feels good, even if the number of edge cases I'd be missing must be huge. I'm going to drop live reloads for now, too much JavaScript jiggery pokery. It's been almost been 3 weeks... Need to optimise the tag rebuilds & uploads, probably. And tests...
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet](https://twitter.com/mikekreuzer/status/830762418485633024)

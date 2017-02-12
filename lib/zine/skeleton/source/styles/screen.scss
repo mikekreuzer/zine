@@ -76,8 +76,12 @@ h3, h4, h5, h6 {
     margin: 1.809em 0 0.809em;
 }
 
-p {
+p, li {
   margin: 1em 0;
+}
+
+ul {
+  margin: 0;
 }
 
 a { color:$linkColour; }
@@ -173,13 +177,15 @@ footer {
   overflow: hidden;
 }
 
-footer .contact {
+footer .column {
   float: left;
-  margin-right: 3em;
+  width: 33%;
+  text-align: left;
 }
 
-footer .contact a, .tags a { color:$linkColour; text-decoration: none; }
-footer .contact a:hover, .tags a:hover   { color:$hoverColour; text-decoration: none; }
+footer .column ul { list-style: none; }
+footer .column a, .tags a { color:$linkColour; text-decoration: none; }
+footer .column a:hover, .tags a:hover   { color:$hoverColour; text-decoration: none; }
 
 .tags ul li {
     list-style: none;
@@ -278,5 +284,8 @@ blockquote {
     width: 50px;
     height: 50px;
     margin: 20px;
+  }
+  footer .column {
+    width: 100%;
   }
 }
