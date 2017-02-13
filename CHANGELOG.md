@@ -352,3 +352,20 @@ Writing the remote version of mkdir_p feels good, even if the number of edge cas
 
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Tweet](https://twitter.com/mikekreuzer/status/830762418485633024)
+
+### Day 21: February 13, 2017
+
+**Today's Progress**:
+
+- fixed some hard wiring from yesterday
+
+**Thoughts:**
+
+Three weeks! And it looks like my router is dying. Sigh. Not much time for programming tonight.
+
+Need to adjust the ordering of the build & file watching, to catch the initial build. Want to consolidate the mkdir requests before I send duplicates over the wire, as well as the tag rebuilds.
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet](https://twitter.com/mikekreuzer/status/831116561515638785)

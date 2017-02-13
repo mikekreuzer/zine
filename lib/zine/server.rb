@@ -41,13 +41,13 @@ module Zine
       cli = HighLine.new
       answer = cli.ask('Upload files? (Y/n)') { |q| q.default = 'Y' }
       return if answer != 'Y'
-      file_upload upload_options
+      file_upload rel_path_build, upload_options
     end
 
     # deploy via SFTP
-    def file_upload(upload_options)
+    def file_upload(rel_path_build, upload_options)
       puts Rainbow('Connecting...').green
-      upload = Zine::Upload.new upload_options
+      upload = Zine::Upload.new rel_path_build, upload_options
       begin
         upload.delete @guard.delete_array
         upload.deploy @guard.upload_array

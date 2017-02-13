@@ -6,11 +6,12 @@ module Zine
   # Deploy changes to a remote host, using SFTP
   # TODO: add GitHub deploys as well...
   class Upload
-    def initialize(options)
+    def initialize(build_dir, options)
       return unless options['method'] == 'sftp'
       cred_file = options['credentials']
       credentials = parse_yaml(File.open(cred_file, 'r'), cred_file)
 
+      @build_dir = build_dir
       @host = options['host']
       @path = options['path']
       @username = credentials['username']
@@ -35,10 +36,17 @@ module Zine
     end
 
     def deploy(file_array)
-      Net::SFTP.start(@host, @username, password: @password) do |sftp|
+      # mock
+      file_array.each do |rel_file_path|
+        puts "Uploaded #{rel_file_path}" if @verbose
+      end
+    end
+
+    def deploy_real(file_array)
+      Net::SFTP.start(@host, @username, password: @password) do |_sftp|
         file_array.each do |rel_file_path|
           mkdir_p(sftp, File.dirname(rel_file_path))
-          sftp.upload(File.join('build', rel_file_path),
+          sftp.upload(File.join(@build_dir, rel_file_path),
                       File.join(@path, rel_file_path),
                       permissions: 0o644).wait # -rw-r--r--
           puts "Uploaded #{rel_file_path}" if @verbose
