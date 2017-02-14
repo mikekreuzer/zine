@@ -369,3 +369,17 @@ Need to adjust the ordering of the build & file watching, to catch the initial b
 
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Tweet](https://twitter.com/mikekreuzer/status/831116561515638785)
+
+### Day 22: February 14, 2017
+
+**Today's Progress**:
+
+- slogging  it out (so far unsuccessfully) consolidating upload paths
+
+**Thoughts:**
+
+Valentine's Day special. Router seems to have righted itself for the moment. Slow going.
+
+**Links to work**
+
+1. [Tweet](https://twitter.com/mikekreuzer/status/831478367174037506)
