@@ -393,3 +393,8 @@ Valentine's Day special. Router seems to have righted itself for the moment. Slo
 **Thoughts:**
 
 Was looking the wrong way - was looking at a folder's children, when it's its parents that matter when removing duplicate mkdir calls.
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet](https://twitter.com/mikekreuzer/status/831859701411307520)
