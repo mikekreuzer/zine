@@ -383,3 +383,13 @@ Valentine's Day special. Router seems to have righted itself for the moment. Slo
 **Links to work**
 
 1. [Tweet](https://twitter.com/mikekreuzer/status/831478367174037506)
+
+### Day 23: February 15, 2017
+
+**Today's Progress**:
+
+- consolidate upload paths instead of sending duplicate mkdir requests via SFTP
+
+**Thoughts:**
+
+Was looking the wrong way - was looking at a folder's children, when it's its parents that matter when removing duplicate mkdir calls.
