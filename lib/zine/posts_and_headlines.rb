@@ -66,6 +66,28 @@ module Zine
       end
     end
 
+    # the build folder equivalent of a non Markdown file in the source tree
+    # TODO: move from posts & headlines
+    def preview_relative_equivalent(file)
+      directories = @options['directories']
+      source_dir = Pathname(File.absolute_path(directories['source']))
+      build_dir = Pathname(File.absolute_path(directories['build']))
+      file_dir = Pathname(File.dirname(file))
+      File.join build_dir, file_dir.relative_path_from(source_dir)
+    end
+
+    # copy a non Markdown file, TODO: move form posts & headlines
+    def preview_straight_copy(file)
+      FileUtils.cp(file, preview_relative_equivalent(file))
+    end
+
+    # delete a non Markdown file, TODO: move form posts & headlines
+    def preview_straight_delete(file)
+      FileUtils.rm(File.join(
+                     preview_relative_equivalent(file), File.basename(file)
+      ))
+    end
+
     # rebuild a page that's not a post - doesn't create the file structure for a
     # new file with new parent folders
     def rebuild_page(file)

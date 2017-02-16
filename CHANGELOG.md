@@ -398,3 +398,18 @@ Was looking the wrong way - was looking at a folder's children, when it's its pa
 
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Tweet](https://twitter.com/mikekreuzer/status/831859701411307520)
+
+### Day 24: February 16, 2017
+
+**Today's Progress**:
+
+- file watcher extended to cover non Markdown files
+
+**Thoughts:**
+
+--
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet](https://twitter.com/mikekreuzer/status/832174649492463616)

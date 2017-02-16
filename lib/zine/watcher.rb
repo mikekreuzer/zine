@@ -49,7 +49,11 @@ module Zine
     # TODO: moves within the watched directory won't delete the old location
     def on_source_change(path)
       path.each do |file|
-        @posts.preview_rebuild file unless (file =~ /^.+\.md$/).nil?
+        if !file.nil? && (file =~ /^.+\.md$/).nil?
+          @posts.preview_straight_copy file
+        else
+          @posts.preview_rebuild file
+        end
       end
     end
 
@@ -57,7 +61,11 @@ module Zine
     # rebuild the headline files... and the tags...
     def on_source_delete(path)
       path.each do |file|
-        @posts.preview_delete file unless (file =~ /^.+\.md$/).nil?
+        if !file.nil? && (file =~ /^.+\.md$/).nil?
+          @posts.preview_straight_delete file
+        else
+          @posts.preview_delete file
+        end
       end
     end
 
