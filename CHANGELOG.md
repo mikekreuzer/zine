@@ -407,7 +407,7 @@ Was looking the wrong way - was looking at a folder's children, when it's its pa
 
 **Thoughts:**
 
---
+A brief session after a few slugfest-y nights
 
 **Links to work**
 
