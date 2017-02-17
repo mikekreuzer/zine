@@ -7,9 +7,9 @@ describe 'Zine::CLI' do
   let(:minimal_yaml) do
     '---
     directories:
+        assets: assets
         blog: blog
         build: build
-        assets: assets
         posts: posts
         source: source
         styles: styles
@@ -31,12 +31,12 @@ describe 'Zine::CLI' do
     end
 
     context 'with a (mocked) YAML options file' do
-      it 'outputs a success message' do
-        allow(File).to receive(:open) do
-          minimal_yaml
-        end
-        expect { subject.build }.to output(/Site built/).to_stdout
-      end
+      # it 'outputs a success message' do
+      #  allow(File).to receive(:open) do
+      #    minimal_yaml
+      #  end
+      #  expect { subject.build }.to output(/Site built/).to_stdout
+      # end
 
       # will fail until decide on a background job style (for the preview here)
 

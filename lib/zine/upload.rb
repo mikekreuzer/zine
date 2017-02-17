@@ -4,62 +4,42 @@ require 'rainbow'
 require 'set'
 
 module Zine
-  # Deploy changes to a remote host, using SFTP
+  # Deploy changes to a remote host
   # TODO: add GitHub deploys as well...
   class Upload
     # a folder in a path
     Node = Struct.new(:name, :path_string)
 
-    def initialize(build_dir, options)
+    def initialize(build_dir, options, delete_file_array, upload_file_array)
       return unless options['method'] == 'sftp'
-      cred_file = options['credentials']
-      credentials = parse_yaml(File.open(cred_file, 'r'), cred_file)
 
       @build_dir = build_dir
       @host = options['host']
       @path = options['path']
-      @username = credentials['username']
-      @password = credentials['password']
       @verbose = options['verbose']
+
+      cred_file = options['credentials']
+      @credentials = parse_yaml(File.open(cred_file, 'r'), cred_file)
+
+      @upload_file_array = Set.new(upload_file_array).to_a
+      @delete_file_array = Set.new(delete_file_array).to_a - @upload_file_array
     end
 
-    def parse_yaml(text, cred_file)
-      YAML.safe_load text
-    rescue Psych::Exception
-      puts Rainbow("Could not parse YAML in: #{cred_file}").red
-      { 'username' => '', 'password' => '' }
-    end
-
-    # TODO: consolidate these for duplicates
-    def delete(file_array)
-      Net::SFTP.start(@host, @username, password: @password) do |sftp|
-        file_array.each do |rel_file_path|
+    def delete
+      Net::SFTP.start(@host, @credentials['username'],
+                      password: @credentials['password']) do |sftp|
+        @delete_file_array.each do |rel_file_path|
           sftp.remove(File.join(@path, rel_file_path)).wait
           puts "Deleted #{rel_file_path}" if @verbose
         end
       end
     end
 
-    def deploy(upload_file_array)
-      Net::SFTP.start(@host, @username, password: @password) do |_sftp|
-        # remove duplicates
-        file_array = Set.new(upload_file_array).to_a
-        # make directories
-        node_array = make_sparse_node_array file_array
-        node_array.each do |level|
-          level.each do |node|
-            next if node.nil?
-            mkdir_p(sftp, node.path_string)
-            puts "mkdir_p #{node.path_string}"
-          end
-        end
-        # upload files
-        file_array.each do |rel_file_path|
-          sftp.upload(File.join(@build_dir, rel_file_path),
-                      File.join(@path, rel_file_path),
-                      permissions: 0o644).wait # -rw-r--r--
-          puts "Uploaded #{rel_file_path}" if @verbose
-        end
+    def deploy
+      Net::SFTP.start(@host, @credentials['username'],
+                      password: @credentials['password']) do |sftp|
+        deploy_directories sftp
+        deploy_files sftp
       end
     end
 
@@ -71,10 +51,33 @@ module Zine
       end
     end
 
+    # make directories
+    def deploy_directories(sftp)
+      node_array = make_sparse_node_array @upload_file_array
+      node_array.each do |level|
+        level.each do |node|
+          next if node.nil?
+          path_string = node.path_string
+          mkdir_p(sftp, path_string)
+          puts "mkdir_p #{path_string}" if @verbose
+        end
+      end
+    end
+
+    # upload files
+    def deploy_files(sftp)
+      @upload_file_array.each do |rel_file_path|
+        sftp.upload(File.join(@build_dir, rel_file_path),
+                    File.join(@path, rel_file_path),
+                    permissions: 0o644).wait # -rw-r--r--
+        puts "Uploaded #{rel_file_path}" if @verbose
+      end
+    end
+
     def mkdir_p(sftp, path)
-      sftp.mkdir!(path, permissions: 0o755) # drwxr-xr-x
-    rescue Net::SFTP::StatusException => e
-      raise if e.code != 4 && e.code != 11  # because folder already exists
+      sftp.mkdir!(File.join(@path, path), permissions: 0o755) # drwxr-xr-x
+    rescue Net::SFTP::StatusException => error
+      raise if error.code != 4 && error.code != 11 # folder already exists
     end
 
     # make a sparse matrix as a directory tree, to make mkdir calls efficiently
@@ -87,16 +90,23 @@ module Zine
       remove_duplicates level_array                       # make it sparse
     end
 
+    def parse_yaml(text, cred_file)
+      YAML.safe_load text
+    rescue Psych::Exception
+      puts Rainbow("Could not parse YAML in: #{cred_file}").red
+      { 'username' => '', 'password' => '' }
+    end
+
     # for each level, if a node has the same name & same path it's a duplicate
     def remove_duplicates(level_array)
       level_array.map do |level|
-        level_array = level
+        length = level.length
         level.each_with_index.map do |node, index|
           next if node.nil?
           if index.zero?
             node
-          elsif !level_array[0..index - 1].index { |item| same(item, node) }.nil? ||
-                !level_array[index + 1..level_array.length].index { |item| same(item, node) }.nil?
+          elsif !level[0..index - 1].index { |item| same(item, node) }.nil? ||
+                !level[index + 1..length].index { |item| same(item, node) }.nil?
             nil
           else
             node
@@ -118,17 +128,17 @@ module Zine
     end
 
     # equality for a node
-    def same(a, b)
-      return false if a.nil? || b.nil?
-      a.name == b.name && a.path_string == b.path_string
+    def same(first, second)
+      return false if first.nil? || second.nil?
+      first.name == second.name && first.path_string == second.path_string
     end
 
     # convert directory names to nodes with knowledge of their parentage
     def strings_to_nodes(paths_array)
       paths_array.map do |path|
         path_string_array = path
-        path.each_with_index.map do |elem, i|
-          Node.new(elem, path_string_array[0..i].join(File::SEPARATOR))
+        path.each_with_index.map do |elem, index|
+          Node.new(elem, path_string_array[0..index].join(File::SEPARATOR))
         end
       end
     end

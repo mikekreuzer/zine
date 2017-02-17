@@ -44,13 +44,14 @@ module Zine
       file_upload rel_path_build, upload_options
     end
 
-    # deploy via SFTP
+    # deploy
     def file_upload(rel_path_build, upload_options)
       puts Rainbow('Connecting...').green
-      upload = Zine::Upload.new rel_path_build, upload_options
       begin
-        upload.delete @guard.delete_array
-        upload.deploy @guard.upload_array
+        upload = Zine::Upload.new rel_path_build, upload_options,
+                                  @guard.delete_array, @guard.upload_array
+        upload.delete
+        upload.deploy
       rescue Errno::ENETUNREACH
         puts Rainbow("Unable to connect to #{upload_options['host']}").red
       rescue Net::SSH::AuthenticationFailed

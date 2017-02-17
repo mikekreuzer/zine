@@ -413,3 +413,18 @@ A brief session after a few slugfest-y nights
 
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Tweet](https://twitter.com/mikekreuzer/status/832174649492463616)
+
+### Day 25: February 17, 2017
+
+**Today's Progress**:
+
+- testing real world data with my blog
+
+**Thoughts:**
+
+Exciting, looking at things I need to clean up to make this workable...
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet](https://twitter.com/mikekreuzer/status/832575013769187330)
