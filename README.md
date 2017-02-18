@@ -64,6 +64,7 @@ To see the options available type zine & hit enter:
 $ zine
 Commands:
   zine build           # Build the site
+  zine force           # Build the site, forcing writes & uploads
   zine help [COMMAND]  # Describe available commands or one specific command
   zine nuke            # Delete the build folder
   zine post TITLE      # Create the file for a new blog post, titled TITLE
