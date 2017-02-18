@@ -47,8 +47,10 @@ Your new post will have some fields set up in the YAML front matter, feel free t
 Once you're done writing, build your new site:
 
 ```shell
-$ zine build
+$ zine build # or zine force
 ```
+
+Build only writes files for things that have changed while it's running, so the first time you build your site you should use force -- force writes all of the files (& so also uploads them all too if you've set up uploads).
 
 ## Design & development
 

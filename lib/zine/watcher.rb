@@ -6,8 +6,8 @@ module Zine
   class Watcher
     attr_reader :upload_array, :delete_array
 
-    def initialize(posts, build_directory, source_directory)
-      @posts = posts
+    def initialize(posts_and_headlines, build_directory, source_directory)
+      @posts_and_headlines = posts_and_headlines
       @build_directory = File.join Dir.pwd, build_directory
       @source_directory = File.join Dir.pwd, source_directory
       @upload_array = []
@@ -44,15 +44,13 @@ module Zine
     end
 
     # rebuild the file, and the headline files & tags
-    # TODO: housekeeping moves for non-Markdown files
-    # TODO: account for file name changes
     # TODO: moves within the watched directory won't delete the old location
     def on_source_change(path)
       path.each do |file|
         if !file.nil? && (file =~ /^.+\.md$/).nil?
-          @posts.preview_straight_copy file
+          @posts_and_headlines.preview_straight_copy file
         else
-          @posts.preview_rebuild file
+          @posts_and_headlines.preview_rebuild file
         end
       end
     end
@@ -62,9 +60,9 @@ module Zine
     def on_source_delete(path)
       path.each do |file|
         if !file.nil? && (file =~ /^.+\.md$/).nil?
-          @posts.preview_straight_delete file
+          @posts_and_headlines.preview_straight_delete file
         else
-          @posts.preview_delete file
+          @posts_and_headlines.preview_delete file
         end
       end
     end

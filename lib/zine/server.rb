@@ -8,10 +8,12 @@ require 'zine/watcher'
 module Zine
   # Local preview web server
   class Server
-    def initialize(posts, rel_path_build, rel_path_source, upload_options)
+    # def initialize(_posts, rel_path_build, _rel_path_source, upload_options,
+    def initialize(rel_path_build, upload_options, delete_array, upload_array)
+      @delete_array = delete_array
+      @upload_array = upload_array
       root = File.absolute_path(rel_path_build)
       motd
-      start_file_watcher(posts, rel_path_build, rel_path_source)
 
       @thin = Thin::Server.new('127.0.0.1', 8080) do
         use Rack::Static,
@@ -32,12 +34,13 @@ module Zine
              'Pragma'        => 'no-cache',
              'Expires'       => now - a_long_time
            },
-           File.open(File.join(root, 'index.html'), File::RDONLY)]
+           [File.open(File.join(root, 'index.html'), File::RDONLY)]]
         }
       end
       @thin.start
 
-      return if upload_options['method'] == 'none'
+      return if upload_options['method'] == 'none' ||
+                (@delete_array.empty? && @upload_array.empty?)
       cli = HighLine.new
       answer = cli.ask('Upload files? (Y/n)') { |q| q.default = 'Y' }
       return if answer != 'Y'
@@ -49,7 +52,8 @@ module Zine
       puts Rainbow('Connecting...').green
       begin
         upload = Zine::Upload.new rel_path_build, upload_options,
-                                  @guard.delete_array, @guard.upload_array
+                                  # @guard.delete_array, @guard.upload_array
+                                  @delete_array, @upload_array
         upload.delete
         upload.deploy
       rescue Errno::ENETUNREACH
@@ -58,11 +62,6 @@ module Zine
         puts Rainbow("Authentication failed for #{upload_options['host']}").red
         puts 'Check your credential file, and maybe run ssh-add?'
       end
-    end
-
-    def start_file_watcher(posts, rel_build, rel_source)
-      @guard = Zine::Watcher.new posts, rel_build, rel_source
-      @guard.start
     end
 
     def motd

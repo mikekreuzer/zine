@@ -24,6 +24,13 @@ module Zine
       puts Rainbow('Site built').green
     end
 
+    desc 'force', 'Build the site, forcing writes & uploads'
+    def force
+      init_site
+      @site.build_site_forcing_writes
+      puts Rainbow('Site built').green
+    end
+
     desc 'nuke', 'Delete the build folder'
     def nuke
       init_site

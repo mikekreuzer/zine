@@ -34,10 +34,20 @@ module Zine
 
     def build_site
       init_templates
-      posts = write_posts_and_headlines
+      FileUtils.mkdir_p @options['directories']['build']
+      # posts_and_guard is { posts: @post_array, guard: @guard }
+      posts_and_guard = posts_and_headlines_without_writing
+      preview posts_and_guard
+    end
+
+    def build_site_forcing_writes
+      init_templates
+      FileUtils.mkdir_p @options['directories']['build']
+      # posts_and_guard is { posts: @post_array, guard: @guard }
+      posts_and_guard = write_posts_and_headlines
       housekeeping_copy
       write_other_markdown_pages
-      preview posts
+      preview posts_and_guard
     end
 
     def clean_option_paths
@@ -55,7 +65,7 @@ module Zine
       possible = Dir.glob(search, File::FNM_DOTMATCH).reject do |found|
         found =~ /^.+\.md$|^.+\.erb$|^\.DS_Store$|^\.$|^\.\.$'/ ||
           File.directory?(found) || found[directories['posts']] ||
-          found[directories['templates']]
+          found[directories['templates']] || found[directories['styles']]
       end
       possible.each do |file|
         dir = Pathname(File.dirname(file)).relative_path_from(Pathname(src_dir))
@@ -78,11 +88,17 @@ module Zine
       )
     end
 
-    def preview(posts)
-      Server.new posts,
-                 @options['directories']['build'],
-                 @options['directories']['source'],
-                 @options['upload']
+    # Generate data without writing files (for incremnetal builds & uploads)
+    # returns posts & guard to use during edits under preview
+    def posts_and_headlines_without_writing
+      posts = Zine::PostsAndHeadlines.new self, @options
+      posts.writeless
+    end
+
+    def preview(posts_and_guard)
+      guard = posts_and_guard[:guard]
+      Server.new @options['directories']['build'], @options['upload'],
+                 guard.delete_array, guard.upload_array
     end
 
     def write_markdown(default_name, src_dir, file)
@@ -106,11 +122,10 @@ module Zine
       end
     end
 
-    # returns the class instance to use during edits under preview
+    # returns posts & guard to use during edits under preview
     def write_posts_and_headlines
       posts = Zine::PostsAndHeadlines.new self, @options
       posts.write
-      posts
     end
   end
 end

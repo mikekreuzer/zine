@@ -101,12 +101,16 @@ module Zine
     def remove_duplicates(level_array)
       level_array.map do |level|
         length = level.length
+        level_copy = level
         level.each_with_index.map do |node, index|
           next if node.nil?
           if index.zero?
             node
-          elsif !level[0..index - 1].index { |item| same(item, node) }.nil? ||
-                !level[index + 1..length].index { |item| same(item, node) }.nil?
+          elsif !level_copy[0..(index - 1)]
+                .index { |item| same(item, node) }.nil? ||
+                !level_copy[(index + 1)..(length - 1)]
+                .index { |item| same(item, node) }.nil?
+            level_copy[index] = nil
             nil
           else
             node

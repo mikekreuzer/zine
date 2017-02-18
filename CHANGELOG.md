@@ -428,3 +428,21 @@ Exciting, looking at things I need to clean up to make this workable...
 
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Tweet](https://twitter.com/mikekreuzer/status/832575013769187330)
+
+### Day 26: February 18, 2017
+
+**Today's Progress**:
+
+- start the file watcher earlier to catch the initial build in a full build,
+  meant everything was a change so everything's uploaded...
+- added an incremental build that skipped the initial writes to fix that
+- linked homepage post titles to posts
+
+**Thoughts:**
+
+Have to move some local directory writes, then I think that's probably v0.3.0. Tomorrow. Would mean uploads took a week by themselves.
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet](https://twitter.com/mikekreuzer/status/832941448307748864)

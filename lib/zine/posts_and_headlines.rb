@@ -11,6 +11,9 @@ module Zine
       @post_array = []
       @site = site
       @tags_by_post = []
+      dir = @options['directories']
+      @guard = Zine::Watcher.new self, dir['build'], dir['source']
+      @guard.start
       read_post_markdown_files
       sort_posts_by_date
     end
@@ -122,7 +125,7 @@ module Zine
       @post_array.sort_by! do |post|
         post.formatted_data.page[:date_rfc3339]
       end.reverse!
-      @post_array # .freeze -- currently modified during preview
+      # TODO: .freeze -- currently modified during preview
     end
 
     # Process each of the headlines pages
@@ -139,6 +142,20 @@ module Zine
         @tags_by_post << post.process
       end
       write_tags_and_headlines
+
+      # end point
+      { posts: @post_array, guard: @guard }
+    end
+
+    # Generate data without writing files (for incremnetal builds & uploads)
+    def writeless
+      @tags_by_post = []
+      @post_array.each do |post|
+        @tags_by_post << post.process_without_writing
+      end
+
+      # end point
+      { posts: @post_array, guard: @guard }
     end
 
     # Pass headline data to the DataPage class to write the files

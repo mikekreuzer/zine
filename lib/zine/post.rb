@@ -22,13 +22,22 @@ module Zine
       dest_dir = File.join(build_dir,
                            date.strftime('%Y'),
                            date.strftime('%-m'))
-      FileUtils.mkdir_p dest_dir
+      FileUtils.mkdir_p dest_dir # TODO: move to write
       slg = Zine::Page.slug(page_data[:title]) + '.html'
       @dest_path = File.join(dest_dir, slg)
     end
 
     def process
       super
+      tag_and_uri_subprocess
+    end
+
+    def process_without_writing
+      parse_markdown
+      tag_and_uri_subprocess
+    end
+
+    def tag_and_uri_subprocess
       page_data = @formatted_data.page
       file_path = rel_path_from_build_dir(@dest_path).to_s
       @formatted_data.uri = URI.join(page_data[:site_URL], file_path).to_s

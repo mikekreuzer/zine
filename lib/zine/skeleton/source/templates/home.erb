@@ -2,7 +2,7 @@
 <main>
   <section>
     <% for @post in data %>
-      <h2><%= @post[:page][:title] %></h2>
+      <h2><a href="<%= @post[:uri] %>"><%= @post[:page][:title] %></a></h2>
       <p class="date"><%= @post[:page][:date_us] %></p>
       <%= @post[:html] %>
       <div class="tags">Tags:
