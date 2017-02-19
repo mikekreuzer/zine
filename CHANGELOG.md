@@ -462,10 +462,11 @@ Have to move some local directory writes, then I think that's probably v0.3.0. T
 
 Happy to call this a new pre release version, and also happy enough to push Zine into production use. My first 'Built with Zine' blog post's going up tonight.
 
-TODO: A 'known issue' I'll deal with later: adding a post file while build is running will generate a post, but the posts & tags won't be re-ordered by date. Adding new posts during a build's not how my blogging workflow works, but it's a bug so I'll fix it.
+TODO: A 'known issue' I'll deal with later: adding a post file while build is running will generate a post, but the posts & tags won't be re-ordered by date. Adding new posts during a build's not how my blogging workflow works, but it's a bug so I'll fix it. Hm, and there's a bug I've just discovered with incremental uploads of just the most recent post... the most common use case - that's next to sort out.
 
 **Links to work**
 
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Gem](https://rubygems.org/gems/zine)
 3. [Blog](https://mikekreuzer.com)
+4. [Tweet](https://twitter.com/mikekreuzer/status/833304266886377474)
