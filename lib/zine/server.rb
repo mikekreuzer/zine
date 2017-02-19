@@ -20,7 +20,6 @@ module Zine
             urls: ['/'],
             index: 'index.html',
             root: root
-
         now = Time.now
         a_long_time = 100**4
         run lambda { |_env|

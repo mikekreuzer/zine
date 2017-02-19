@@ -19,15 +19,15 @@ module Zine
     def make_path_from_date(build_dir)
       page_data = @formatted_data.page
       date = DateTime.parse(page_data[:date_rfc3339])
-      dest_dir = File.join(build_dir,
-                           date.strftime('%Y'),
-                           date.strftime('%-m'))
-      FileUtils.mkdir_p dest_dir # TODO: move to write
+      @dest_dir = File.join(build_dir,
+                            date.strftime('%Y'),
+                            date.strftime('%-m'))
       slg = Zine::Page.slug(page_data[:title]) + '.html'
-      @dest_path = File.join(dest_dir, slg)
+      @dest_path = File.join(@dest_dir, slg)
     end
 
     def process
+      FileUtils.mkdir_p @dest_dir
       super
       tag_and_uri_subprocess
     end

@@ -42,6 +42,16 @@ module Zine
          template_name: templates['rss'], title: '' }]
     end
 
+    def one_new_post(source_file)
+      post_name = @options['templates']['post']
+      @post_array << Zine::Post.new(source_file,
+                                    @site.make_template_bundle(post_name),
+                                    @options)
+      @tags_by_post << @post_array.last.process
+      # TODO: may need to reorder posts by date, and therefor redo tags
+      write_tags_and_headlines
+    end
+
     # get build file from post or location, delete build, remove form post_array
     def preview_delete(file_path)
       page = find_page_from_path file_path
@@ -63,9 +73,14 @@ module Zine
     def preview_rebuild(file_path)
       page = find_page_from_path file_path
       if page[:index].nil?
-        rebuild_page(file_path)
+        if File.dirname(file_path) ==
+           File.absolute_path(@options['directories']['posts'])
+          one_new_post file_path
+        else
+          rebuild_page file_path
+        end
       else
-        rebuild_post(page[:post], page[:index])
+        rebuild_post page[:post], page[:index]
       end
     end
 
@@ -107,6 +122,7 @@ module Zine
                                           post.template_bundle, @options
       @tags_by_post[index] = @post_array[index].process
       write_tags_and_headlines
+      # TODO: may need to reorder posts by date... means re-doing tags
     end
 
     # Read markdown files in the posts folder into an array of Posts

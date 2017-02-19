@@ -446,3 +446,26 @@ Have to move some local directory writes, then I think that's probably v0.3.0. T
 
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Tweet](https://twitter.com/mikekreuzer/status/832941448307748864)
+
+## v0.3.0
+
+### Day 27: February 19, 2017
+
+**Today's Progress**:
+
+- moved the local post directory creation to the write method
+- added a minimalist version of building additional posts while build is running
+- v0.3.0
+- and tonight Zine's in use in the wild
+
+**Thoughts:**
+
+Happy to call this a new pre release version, and also happy enough to push Zine into production use. My first 'Built with Zine' blog post's going up tonight.
+
+TODO: A 'known issue' I'll deal with later: adding a post file while build is running will generate a post, but the posts & tags won't be re-ordered by date. Adding new posts during a build's not how my blogging workflow works, but it's a bug so I'll fix it.
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Gem](https://rubygems.org/gems/zine)
+3. [Blog](https://mikekreuzer.com)
