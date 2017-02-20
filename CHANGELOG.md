@@ -491,3 +491,4 @@ Fixed the bug in file uploads by using .uniq on an array of hashes (which I'd pl
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Gem](https://rubygems.org/gems/zine)
 3. [Blog](https://mikekreuzer.com)
+4. [Tweet](https://twitter.com/mikekreuzer/status/833658907054583809)
