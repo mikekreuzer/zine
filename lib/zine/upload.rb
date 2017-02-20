@@ -12,7 +12,6 @@ module Zine
 
     def initialize(build_dir, options, delete_file_array, upload_file_array)
       return unless options['method'] == 'sftp'
-
       @build_dir = build_dir
       @host = options['host']
       @path = options['path']
@@ -99,24 +98,7 @@ module Zine
 
     # for each level, if a node has the same name & same path it's a duplicate
     def remove_duplicates(level_array)
-      level_array.map do |level|
-        length = level.length
-        level_copy = level
-        level.each_with_index.map do |node, index|
-          next if node.nil?
-          if index.zero?
-            node
-          elsif !level_copy[0..(index - 1)]
-                .index { |item| same(item, node) }.nil? ||
-                !level_copy[(index + 1)..(length - 1)]
-                .index { |item| same(item, node) }.nil?
-            level_copy[index] = nil
-            nil
-          else
-            node
-          end
-        end
-      end
+      level_array.map(&:uniq)
     end
 
     # array of file paths to array of directory paths
@@ -129,12 +111,6 @@ module Zine
           path
         end
       end
-    end
-
-    # equality for a node
-    def same(first, second)
-      return false if first.nil? || second.nil?
-      first.name == second.name && first.path_string == second.path_string
     end
 
     # convert directory names to nodes with knowledge of their parentage

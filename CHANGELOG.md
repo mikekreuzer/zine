@@ -470,3 +470,24 @@ TODO: A 'known issue' I'll deal with later: adding a post file while build is ru
 2. [Gem](https://rubygems.org/gems/zine)
 3. [Blog](https://mikekreuzer.com)
 4. [Tweet](https://twitter.com/mikekreuzer/status/833304266886377474)
+
+## 0.4.0
+
+### Day 28: February 20, 2017
+
+**Today's Progress**:
+
+- fixed a bug in file uploads, which warrants a gem version bump
+- fixed some typos in the blog (hey, editing to trigger changes is still editing)
+- updated some styles (footer links, bold text)
+- 0.4.0
+
+**Thoughts:**
+
+Fixed the bug in file uploads by using .uniq on an array of hashes (which I'd planned to use, then forgot about... my Ruby Fu is still rusty).
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Gem](https://rubygems.org/gems/zine)
+3. [Blog](https://mikekreuzer.com)

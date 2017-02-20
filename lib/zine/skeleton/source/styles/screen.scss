@@ -96,6 +96,10 @@ section > section {
     margin-bottom: 3.236em;
 }
 
+strong {
+  font-weight: $heavyWeight;
+}
+
 /* Site */
 body > header {
   width: $desktopWidth;
@@ -185,7 +189,7 @@ footer .column {
 
 footer .column ul { list-style: none; }
 footer .column a, .tags a { color:$linkColour; text-decoration: none; }
-footer .column a:hover, .tags a:hover   { color:$hoverColour; text-decoration: none; }
+footer .column a:hover, .tags a:hover   { color:$hoverColour; text-decoration: underline; }
 
 .tags ul li {
     list-style: none;
