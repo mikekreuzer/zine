@@ -23,9 +23,9 @@ These are the very early days of zine, expect breaking changes.'
   spec.required_ruby_version = '>= 2.0'
 
   spec.add_development_dependency 'bundler', '~> 1.13'
-  spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rake', '~> 12.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'simplecov', '~> 0.12'
+  spec.add_development_dependency 'simplecov', '~> 0.13'
 
   # spec.add_dependency 'concurrent-ruby', '~> 1.0', '>= 1.0.2'
   spec.add_dependency 'highline', '~> 1.7', '>= 1.7.8'

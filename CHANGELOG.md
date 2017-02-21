@@ -492,3 +492,23 @@ Fixed the bug in file uploads by using .uniq on an array of hashes (which I'd pl
 2. [Gem](https://rubygems.org/gems/zine)
 3. [Blog](https://mikekreuzer.com)
 4. [Tweet](https://twitter.com/mikekreuzer/status/833658907054583809)
+
+### Day 29: February 21, 2017
+
+**Today's Progress**:
+
+- deleted the stock post & about files I uploaded to my blog by mistake (hmm)
+- updated dependencies: Rake & Simplecov
+- refactored Zine::Site#housekeeping_copy
+- started chipping away at RDoc, and making some methods private
+- started to get back into writing tests again
+
+
+**Thoughts:**
+
+Need to need make the stock files more obvious, or maybe have an upgrade option, not sure where to draw the line on that... everything but the initial post & the about file? Tests. Finally.
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet](https://twitter.com/mikekreuzer/status/834021891383767040)

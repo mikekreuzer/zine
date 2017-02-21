@@ -8,12 +8,103 @@ require 'zine/templates'
 module Zine
   # the site
   class Site
+    # Site options read from YAML during the initialisation of the class
     attr_reader :options
 
+    # Create a new instance of Site, called by CLI#init_site
     def initialize
       @templates_by_name = {}
       init_options
       clean_option_paths
+    end
+
+    # A dry run build that generates baseline data to compare changes to during
+    # editting/preview, then generate files where the source files change.
+    # Called by CLI#build
+    def build_site
+      init_templates
+      FileUtils.mkdir_p @options['directories']['build']
+      # posts_and_guard is { posts: @post_array, guard: @guard }
+      posts_and_guard = posts_and_headlines_without_writing
+      preview posts_and_guard
+    end
+
+    # Build the files of the site, generating files immeadiately, suitable for
+    # the initial build or complete rebuild.
+    # Called by CLI#force
+    def build_site_forcing_writes
+      init_templates
+      FileUtils.mkdir_p @options['directories']['build']
+      # posts_and_guard is { posts: @post_array, guard: @guard }
+      posts_and_guard = write_posts_and_headlines
+      housekeeping
+      write_other_markdown_pages
+      preview posts_and_guard
+    end
+
+    # Create a new instance of TemplateFiles, looking up the body template in
+    # @templates_by_name, defaults to the template named 'default'
+    #
+    # Called in PostsAndHeadlines.read_post_markdown_files,
+    # PostsAndHeadlines.one_new_post, PostsAndHeadlines.write_headline,
+    # PostsAndHeadlines.write_tags_and_headlines
+    #
+    # ==== Attributes
+    #
+    # * +type+ - The name of the template used for the body eg post
+    #
+    # ==== Eg
+    #
+    #    make_template_bundle 'post'
+    #
+    def make_template_bundle(type)
+      TemplateFiles.new(
+        if @templates_by_name.key?(type)
+          @templates_by_name[type]
+        else
+          @templates_by_name['default']
+        end,
+        @templates_by_name['header_partial'],
+        @templates_by_name['footer_partial']
+      )
+    end
+
+    private
+
+    def clean_option_paths
+      directories = @options['directories']
+      %w(assets posts styles templates).each do |dir|
+        directories[dir] = File.join directories['source'], directories[dir]
+      end
+      directories['blog'] = File.join directories['build'], directories['blog']
+    end
+
+    def housekeeping
+      directories = @options['directories']
+      source_directory = directories['source']
+      search = File.join source_directory, '**', '*.*'
+      possible = Dir.glob(search, File::FNM_DOTMATCH).reject do |found|
+        housekeeping_files_not_to_copy found, directories
+      end
+      possible.each do |file|
+        housekeeping_copy(file, source_directory, directories['build'])
+      end
+    end
+
+    def housekeeping_files_not_to_copy(found, directories)
+      found =~ /^.+\.md$|^.+\.erb$|^\.DS_Store$|^\.$|^\.\.$'/ ||
+        File.directory?(found) ||
+        found[directories['posts']] ||
+        found[directories['templates']] ||
+        found[directories['styles']]
+    end
+
+    def housekeeping_copy(file, src_dir, build_dir)
+      dir = Pathname(File.dirname(file)).relative_path_from(Pathname(src_dir))
+      filename = File.basename file
+      dest = File.join build_dir, dir
+      FileUtils.mkdir_p dest
+      FileUtils.cp file, File.join(dest, filename)
     end
 
     def init_options
@@ -32,63 +123,7 @@ module Zine
       end
     end
 
-    def build_site
-      init_templates
-      FileUtils.mkdir_p @options['directories']['build']
-      # posts_and_guard is { posts: @post_array, guard: @guard }
-      posts_and_guard = posts_and_headlines_without_writing
-      preview posts_and_guard
-    end
-
-    def build_site_forcing_writes
-      init_templates
-      FileUtils.mkdir_p @options['directories']['build']
-      # posts_and_guard is { posts: @post_array, guard: @guard }
-      posts_and_guard = write_posts_and_headlines
-      housekeeping_copy
-      write_other_markdown_pages
-      preview posts_and_guard
-    end
-
-    def clean_option_paths
-      directories = @options['directories']
-      %w(assets posts styles templates).each do |dir|
-        directories[dir] = File.join directories['source'], directories[dir]
-      end
-      directories['blog'] = File.join directories['build'], directories['blog']
-    end
-
-    def housekeeping_copy
-      directories = @options['directories']
-      src_dir = directories['source']
-      search = File.join src_dir, '**', '*.*'
-      possible = Dir.glob(search, File::FNM_DOTMATCH).reject do |found|
-        found =~ /^.+\.md$|^.+\.erb$|^\.DS_Store$|^\.$|^\.\.$'/ ||
-          File.directory?(found) || found[directories['posts']] ||
-          found[directories['templates']] || found[directories['styles']]
-      end
-      possible.each do |file|
-        dir = Pathname(File.dirname(file)).relative_path_from(Pathname(src_dir))
-        filename = File.basename file
-        dest = File.join directories['build'], dir
-        FileUtils.mkdir_p dest
-        FileUtils.cp file, File.join(dest, filename)
-      end
-    end
-
-    def make_template_bundle(type)
-      TemplateFiles.new(
-        if @templates_by_name.key?(type)
-          @templates_by_name[type]
-        else
-          @templates_by_name['default']
-        end,
-        @templates_by_name['header_partial'],
-        @templates_by_name['footer_partial']
-      )
-    end
-
-    # Generate data without writing files (for incremnetal builds & uploads)
+    # Generate data without writing files (for incremental builds & uploads)
     # returns posts & guard to use during edits under preview
     def posts_and_headlines_without_writing
       posts = Zine::PostsAndHeadlines.new self, @options
@@ -111,7 +146,6 @@ module Zine
       page.process
     end
 
-    # TODO: structure in common with housekeeping_copy
     def write_other_markdown_pages
       dir_options = @options['directories']
       src_dir = dir_options['source']

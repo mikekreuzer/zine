@@ -77,6 +77,12 @@ module Zine
       @template_bundle = templates
     end
 
+    def self.slug(text)
+      text.downcase
+          .gsub(/[^a-z0-9]+/, '-')
+          .gsub(/^-|-$/, '')
+    end
+
     def parse_markdown
       @formatted_data.html = Kramdown::Document.new(
         @raw_text,
@@ -106,12 +112,6 @@ module Zine
 
       compressor = HtmlCompressor::Compressor.new
       File.write(@dest_path, compressor.compress(html))
-    end
-
-    def self.slug(text)
-      text.downcase
-          .gsub(/[^a-z0-9]+/, '-')
-          .gsub(/^-|-$/, '')
     end
 
     def template_the_html
