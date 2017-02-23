@@ -512,3 +512,21 @@ Need to need make the stock files more obvious, or maybe have an upgrade option,
 
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Tweet](https://twitter.com/mikekreuzer/status/834021891383767040)
+
+### Took the night off: February 22, 2017
+
+### Day 30: February 23, 2017
+
+**Today's Progress**:
+
+- rebased a pull request for BennyHallett/elixir-rss
+- Page tests
+
+**Thoughts:**
+
+Needed a break last night, back into it.
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet](https://twitter.com/mikekreuzer/status/834740235460177920)

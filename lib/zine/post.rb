@@ -16,16 +16,6 @@ module Zine
       @dest_path = make_path_from_date option_dir['blog']
     end
 
-    def make_path_from_date(build_dir)
-      page_data = @formatted_data.page
-      date = DateTime.parse(page_data[:date_rfc3339])
-      @dest_dir = File.join(build_dir,
-                            date.strftime('%Y'),
-                            date.strftime('%-m'))
-      slg = Zine::Page.slug(page_data[:title]) + '.html'
-      @dest_path = File.join(@dest_dir, slg)
-    end
-
     def process
       FileUtils.mkdir_p @dest_dir
       super
@@ -35,6 +25,18 @@ module Zine
     def process_without_writing
       parse_markdown
       tag_and_uri_subprocess
+    end
+
+    private
+
+    def make_path_from_date(build_dir)
+      page_data = @formatted_data.page
+      date = DateTime.parse(page_data[:date_rfc3339])
+      @dest_dir = File.join(build_dir,
+                            date.strftime('%Y'),
+                            date.strftime('%-m'))
+      slg = Zine::Page.slug(page_data[:title]) + '.html'
+      @dest_path = File.join(@dest_dir, slg)
     end
 
     def tag_and_uri_subprocess

@@ -25,28 +25,31 @@ module Zine
       attr_accessor :uri
 
       def initialize(front_matter, site_opt)
+        site = site_opt['options']
         @page = { date_rfc3339: front_matter['date'],
                   date_us: parse_date(front_matter['date']),
-                  github_name: site_opt['options']['github_name'],
+                  github_name: site['github_name'],
                   links_array: site_opt['links'],
-                  num_items_on_home: site_opt['options']['num_items_on_home'],
-                  site_author: site_opt['options']['site_author'],
-                  site_description: site_opt['options']['site_description'],
-                  site_name: site_opt['options']['site_name'],
-                  site_URL: site_opt['options']['site_URL'],
+                  num_items_on_home: site['num_items_on_home'],
+                  site_author: site['site_author'],
+                  site_description: site['site_description'],
+                  site_name: site['site_name'],
+                  site_URL: site['site_URL'],
                   tags: slugify_tags(front_matter['tags']),
                   title: html_escape(front_matter['title']),
-                  twitter_name: site_opt['options']['twitter_name'] }
+                  twitter_name: site['twitter_name'] }
       end
+
+      def public_binding
+        binding
+      end
+
+      private
 
       def parse_date(front_matter_date)
         DateTime.rfc3339(front_matter_date).strftime('%B %-d, %Y')
       rescue
         ''
-      end
-
-      def public_binding
-        binding
       end
 
       def slugify_tags(tags)
@@ -70,17 +73,27 @@ module Zine
       init_templates(templates)
     end
 
-    def init_templates(templates)
-      @header_partial = templates.header
-      @footer_partial = templates.footer
-      @template = templates.body
-      @template_bundle = templates
+    def process
+      parse_markdown
+      html = template_the_html
+
+      compressor = HtmlCompressor::Compressor.new
+      File.write(@dest_path, compressor.compress(html))
     end
 
     def self.slug(text)
       text.downcase
           .gsub(/[^a-z0-9]+/, '-')
           .gsub(/^-|-$/, '')
+    end
+
+    private
+
+    def init_templates(templates)
+      @header_partial = templates.header
+      @footer_partial = templates.footer
+      @template = templates.body
+      @template_bundle = templates
     end
 
     def parse_markdown
@@ -106,20 +119,11 @@ module Zine
       full.relative_path_from(Pathname(@build_dir))
     end
 
-    def process
-      parse_markdown
-      html = template_the_html
-
-      compressor = HtmlCompressor::Compressor.new
-      File.write(@dest_path, compressor.compress(html))
-    end
-
     def template_the_html
-      @formatted_data.header_partial = @header_partial.result(@formatted_data
-        .public_binding)
-      @formatted_data.footer_partial = @footer_partial.result(@formatted_data
-        .public_binding)
-      @template.result(@formatted_data.public_binding)
+      data_binding = @formatted_data.public_binding
+      @formatted_data.header_partial = @header_partial.result data_binding
+      @formatted_data.footer_partial = @footer_partial.result data_binding
+      @template.result data_binding
     end
   end
 end
