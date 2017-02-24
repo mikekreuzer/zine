@@ -530,3 +530,17 @@ Needed a break last night, back into it.
 
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Tweet](https://twitter.com/mikekreuzer/status/834740235460177920)
+
+### Day 31: February 24, 2017
+
+**Today's Progress**:
+
+- trawling through set_trace_func call logs
+
+**Thoughts:**
+
+Looking at execution paths, to make sure they are what I think they are.
+
+**Links to work**
+
+1. [Tweet](https://twitter.com/mikekreuzer/status/835110622794661889)
