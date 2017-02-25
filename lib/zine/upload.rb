@@ -1,3 +1,4 @@
+require 'highline'
 require 'net/ssh'
 require 'net/sftp'
 require 'rainbow'
@@ -40,6 +41,14 @@ module Zine
         deploy_directories sftp
         deploy_files sftp
       end
+    end
+
+    def upload_decision
+      cli = HighLine.new
+      answer = cli.ask('Upload files? (Y/n)') { |q| q.default = 'Y' }
+      return if answer != 'Y'
+      puts Rainbow('Connecting...').green
+      upload
     end
 
     private
@@ -132,6 +141,16 @@ module Zine
         input.each_with_index { |r, j| result[i][j] = r[i] }
       end
       result
+    end
+
+    def upload
+      delete
+      deploy
+    rescue Errno::ENETUNREACH
+      puts Rainbow("Unable to connect to #{upload_options['host']}").red
+    rescue Net::SSH::AuthenticationFailed
+      puts Rainbow("Authentication failed for #{upload_options['host']}").red
+      puts 'Check your credential file, and maybe run ssh-add?'
     end
   end
 end

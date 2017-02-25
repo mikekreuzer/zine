@@ -23,6 +23,7 @@ These are the very early days of zine, expect breaking changes.'
   spec.required_ruby_version = '>= 2.0'
 
   spec.add_development_dependency 'bundler', '~> 1.13'
+  spec.add_development_dependency 'curb', '~> 0.9.3'
   spec.add_development_dependency 'rake', '~> 12.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'simplecov', '~> 0.13'

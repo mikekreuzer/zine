@@ -544,3 +544,19 @@ Looking at execution paths, to make sure they are what I think they are.
 **Links to work**
 
 1. [Tweet](https://twitter.com/mikekreuzer/status/835110622794661889)
+
+### Day 32: February 25, 2017
+
+**Today's Progress**:
+
+- cleaned up Server, setting headers properly
+- added curb as a development dependency, started on Server tests with tests of those headers
+- then back in on page tests... some more refactoring required
+
+**Thoughts:**
+
+Testing times. :-)
+
+**Links to work**
+
+1. [Tweet](https://twitter.com/mikekreuzer/status/835471172967944192)

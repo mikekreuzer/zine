@@ -19,6 +19,12 @@ module Zine
 
     desc 'build', 'Build the site'
     def build
+      # set_trace_func proc { |event, file, line, id, _binding, classname|
+      #  if event == 'call' && classname.name.split('::').first == 'Zine'
+      #    printf "%25s\#%s\t\t\t%s:%-2d\n", classname, id, file, line
+      #  end
+      # }
+
       init_site
       @site.build_site
       puts Rainbow('Site built').green
