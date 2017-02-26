@@ -26,6 +26,7 @@ module Zine
 
     def create_server(root)
       rules = header_rules
+      Thin::Logging.silent = true
       Thin::Server.new('127.0.0.1', 8080) do
         use Rack::Static,
             urls: ['/'],

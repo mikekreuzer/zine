@@ -559,4 +559,22 @@ Testing times. :-)
 
 **Links to work**
 
-1. [Tweet](https://twitter.com/mikekreuzer/status/835471172967944192)
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet](https://twitter.com/mikekreuzer/status/835471172967944192)
+
+### Day 33: February 26, 2017
+
+**Today's Progress**:
+
+- added what I thought would've been the default filter to Simplecov (excluding the spec directory)
+- injecting File into the file writing methods, to make testable versions
+- rewrote some Page and Server tests
+
+**Thoughts:**
+
+Been thinking about my next project while playing around with the tests. Had originally imagined maybe three or four projects, but it seems it'll be more like two, maybe three now. I have at least a week or maybe two of writing tests till I'm willing to slow down on those, having only just started, & a project of a similar size to Zine in mind for my next gig.
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet](https://twitter.com/mikekreuzer/status/835809220020707329)

@@ -68,7 +68,7 @@ module Zine
     def style
       init_site
       style = Zine::Style.new(@site.options['directories'])
-      style.process
+      style.process(File)
       puts Rainbow('Stylesheet rendered').green
     end
 

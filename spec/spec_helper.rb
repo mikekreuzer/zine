@@ -1,5 +1,10 @@
-require 'simplecov'
-SimpleCov.start
+$LOAD_PATH.unshift File.expand_path(File.join('..', '..', 'lib'), __FILE__)
 
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+require 'simplecov'
+SimpleCov.start do
+  add_filter do |source_file|
+    File.dirname(source_file.filename).eql? File.dirname(__FILE__)
+  end
+end
+
 require 'zine'

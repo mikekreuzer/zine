@@ -10,10 +10,10 @@ module Zine
     end
 
     # Write the CSS file
-    def process
+    def process(string_or_file_writer)
       sass = File.open(@style_file, 'r').read
       css = SassC::Engine.new(sass, style: :compressed).render
-      File.write @css_file, css
+      string_or_file_writer.write @css_file, css
     end
   end
 end

@@ -16,9 +16,9 @@ module Zine
       @dest_path = make_path_from_date option_dir['blog']
     end
 
-    def process
+    def process(string_or_file_writer)
       FileUtils.mkdir_p @dest_dir
-      super
+      super string_or_file_writer
       tag_and_uri_subprocess
     end
 

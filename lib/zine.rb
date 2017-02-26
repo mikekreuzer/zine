@@ -143,7 +143,7 @@ module Zine
       FileUtils.mkdir_p dest
       page = Zine::Page.new(file, File.join(dest, file_name),
                             make_template_bundle(default_name), @options)
-      page.process
+      page.process File
     end
 
     def write_other_markdown_pages

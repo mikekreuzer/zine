@@ -73,12 +73,12 @@ module Zine
       init_templates(templates)
     end
 
-    def process
+    def process(string_or_file_writer)
       parse_markdown
       html = template_the_html
 
       compressor = HtmlCompressor::Compressor.new
-      File.write(@dest_path, compressor.compress(html))
+      string_or_file_writer.write(@dest_path, compressor.compress(html))
     end
 
     def self.slug(text)

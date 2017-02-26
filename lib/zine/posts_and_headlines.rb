@@ -47,7 +47,7 @@ module Zine
       @post_array << Zine::Post.new(source_file,
                                     @site.make_template_bundle(post_name),
                                     @options)
-      @tags_by_post << @post_array.last.process
+      @tags_by_post << @post_array.last.process(File)
       # TODO: may need to reorder posts by date, and therefor redo tags
       write_tags_and_headlines
     end
@@ -120,7 +120,7 @@ module Zine
     def rebuild_post(post, index)
       @post_array[index] = Zine::Post.new post.source_file,
                                           post.template_bundle, @options
-      @tags_by_post[index] = @post_array[index].process
+      @tags_by_post[index] = @post_array[index].process File
       write_tags_and_headlines
       # TODO: may need to reorder posts by date... means re-doing tags
     end
@@ -155,7 +155,7 @@ module Zine
     def write
       @tags_by_post = []
       @post_array.each do |post|
-        @tags_by_post << post.process
+        @tags_by_post << post.process(File)
       end
       write_tags_and_headlines
 
