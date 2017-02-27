@@ -7,6 +7,15 @@ require 'zine/watcher'
 module Zine
   # Local preview web server
   class Server
+    # Create a new instance of Server, used to preview the built site locally
+    #
+    # ==== Attributes
+    #
+    # * +rel_path_build+ - string, relative path to the build folder
+    # * +upload_options+ - hash created from the upload section of zine.yaml
+    # * +delete_array+ - array of path strings of files to delete
+    # * +upload_array+ - ditto for files to upload, both can include duplicates
+    #
     def initialize(rel_path_build, upload_options, delete_array, upload_array)
       @delete_array = delete_array
       @upload_array = upload_array
@@ -17,7 +26,7 @@ module Zine
       @thin
     end
 
-    # stop the server - only used in testing
+    # Stop the server - only used in test
     def stop
       @thin.stop
     end

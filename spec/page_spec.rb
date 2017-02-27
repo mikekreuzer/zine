@@ -65,7 +65,7 @@ describe 'Zine::Page' do
     end
 
     context 'with badly formed front matter' do
-      it 'creates a page with default meta values & outputs a warning' do
+      it 'creates a Page object with default meta values & outputs a warning' do
         allow(File)
           .to receive(:open)
           .with('bad.md', 'r')

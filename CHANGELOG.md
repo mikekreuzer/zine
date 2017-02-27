@@ -578,3 +578,18 @@ Been thinking about my next project while playing around with the tests. Had ori
 
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Tweet](https://twitter.com/mikekreuzer/status/835809220020707329)
+
+### Day 34: February 27, 2017
+
+**Today's Progress**:
+
+- minor doc work
+
+**Thoughts:**
+
+Toyed with using Apple's news format... but RSS seems to work fine. Almost a night off. Almost.
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet](https://twitter.com/mikekreuzer/status/836196422722580480)
