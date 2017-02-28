@@ -607,4 +607,4 @@ Toyed with using Apple's news format... but RSS seems to work fine. Almost a nig
 **Links to work**
 
 1. [Repo](https://github.com/mikekreuzer/zine)
-2. [Tweet]()
+2. [Tweet](https://twitter.com/mikekreuzer/status/836554681690181632)
