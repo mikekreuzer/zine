@@ -20,11 +20,6 @@ describe 'Zine::Page' do
   end
 
   describe '#new' do
-    class MockFile
-      def self.write(path, content)
-        { path: path, content: content }
-      end
-    end
     before(:all) do
       skeleton_dir = File.join('..', '..', 'lib', 'zine', 'skeleton')
       @skeleton_about_file = File.expand_path(File.join(skeleton_dir, 'source',

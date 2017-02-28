@@ -593,3 +593,18 @@ Toyed with using Apple's news format... but RSS seems to work fine. Almost a nig
 
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Tweet](https://twitter.com/mikekreuzer/status/836196422722580480)
+
+### Day 35: February 28, 2017
+
+**Today's Progress**:
+
+- more tests (Style and some more of CLI)
+
+**Thoughts:**
+
+43.8% covered, supposedly. Realistically there are ten substantive classes, one of which (PostsAndHeadlines) will act as an integration test, and I've written some tests for three... so somewhere around the 33% mark is probably closer to it. Happy with that rate of progress. My memory of rspec's mocking syntax especially is very shaky, but fixing that is what this is all about.
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet]()

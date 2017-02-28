@@ -8,3 +8,10 @@ SimpleCov.start do
 end
 
 require 'zine'
+
+# Passed to write methods in place of File to generate a string, not a file
+class MockFile
+  def self.write(path, content)
+    { path: path, content: content }
+  end
+end
