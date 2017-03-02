@@ -608,3 +608,39 @@ Toyed with using Apple's news format... but RSS seems to work fine. Almost a nig
 
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Tweet](https://twitter.com/mikekreuzer/status/836554681690181632)
+
+### Day 36: March 1, 2017
+
+**Today's Progress**:
+
+- Ripley for March
+- started playing around with GitHub uploads
+
+**Thoughts:**
+
+Snuck Ripley in in my first session (the 'only just AM', 'is that the time' session)... Had hoped to be using Zine for the Ripley site for March; April for the first anniversary for sure.
+
+Overall still want the tests to catch up some more before adding new features, but the upload code needs splitting up, and that's an opportune moment to get both SFTP & Octokit in there.
+
+**Links to work**
+
+1. [Ripley](https://mikekreuzer.github.io/Ripley/)
+2. [Ripley repo](https://github.com/mikekreuzer/Ripley)
+3. [Ripley Tweet](https://twitter.com/mikekreuzer/status/836564005799915520)
+4. [Zine Tweet](https://twitter.com/mikekreuzer/status/836925144853467136)
+
+### Day 37: March 2, 2017
+
+**Today's Progress**:
+
+- more work on GitHub uploads
+
+**Thoughts:**
+
+Octokit seems to work ok, though yet to integrate it (the Upload code still needs to be split up).
+
+Having to poll each possible remote copy of a file to see if it exists, to get its sha & to call separate create or update methods is clumsy. With a small number of uploads that's still likely to be fewer calls than getting all the remote files' info to update that locally though, because I'd need to poll each remote directory for its contents.
+
+**Links to work**
+
+1. [Zine Tweet](https://twitter.com/mikekreuzer/status/837282872876638209)

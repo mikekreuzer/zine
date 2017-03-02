@@ -20,7 +20,7 @@ These are the very early days of zine, expect breaking changes.'
   spec.executables   = 'zine'
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '>= 2.0'
+  spec.required_ruby_version = '>= 2.2.2' # to match rails
 
   spec.add_development_dependency 'bundler', '~> 1.13'
   spec.add_development_dependency 'curb', '~> 0.9.3'
@@ -34,6 +34,7 @@ These are the very early days of zine, expect breaking changes.'
   spec.add_dependency 'kramdown', '~> 1.13', '>= 1.13.2'
   spec.add_dependency 'listen', '~> 3.0', '>= 3.1.5'
   spec.add_dependency 'net-sftp', '~> 2.1', '>= 2.1.2'
+  spec.add_dependency 'octokit', '~> 4.0'
   spec.add_dependency 'rainbow', '~> 2.2', '>= 2.2.1'
   spec.add_dependency 'sassc', '~> 1.11', '>= 1.11.2'
   spec.add_dependency 'thin', '~> 1.7'
