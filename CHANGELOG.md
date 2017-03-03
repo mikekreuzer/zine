@@ -644,3 +644,17 @@ Having to poll each possible remote copy of a file to see if it exists, to get i
 **Links to work**
 
 1. [Zine Tweet](https://twitter.com/mikekreuzer/status/837282872876638209)
+
+### Day 38: March 3, 2017
+
+**Today's Progress**:
+
+- Ripley
+
+**Thoughts:**
+
+Started on converting Ripley over to a static site, getting the JSON data to compare locally - to get smooth navigation between months. More Ruby, in what had been an Elixir project (and before that a Go project). :-)
+
+**Links to work**
+
+1. [Zine Tweet](https://twitter.com/mikekreuzer/status/837652254773563392)
