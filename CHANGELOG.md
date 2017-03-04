@@ -658,3 +658,17 @@ Started on converting Ripley over to a static site, getting the JSON data to com
 **Links to work**
 
 1. [Zine Tweet](https://twitter.com/mikekreuzer/status/837652254773563392)
+
+### Day 39: March 4, 2017
+
+**Today's Progress**:
+
+- more toying with making Ripley data into Zine posts
+
+**Thoughts:**
+
+Long week, short night of coding.
+
+**Links to work**
+
+1. [Zine Tweet](https://twitter.com/mikekreuzer/status/838004709793280000)
