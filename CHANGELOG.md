@@ -643,7 +643,7 @@ Having to poll each possible remote copy of a file to see if it exists, to get i
 
 **Links to work**
 
-1. [Zine Tweet](https://twitter.com/mikekreuzer/status/837282872876638209)
+1. [Tweet](https://twitter.com/mikekreuzer/status/837282872876638209)
 
 ### Day 38: March 3, 2017
 
@@ -657,7 +657,7 @@ Started on converting Ripley over to a static site, getting the JSON data to com
 
 **Links to work**
 
-1. [Zine Tweet](https://twitter.com/mikekreuzer/status/837652254773563392)
+1. [Tweet](https://twitter.com/mikekreuzer/status/837652254773563392)
 
 ### Day 39: March 4, 2017
 
@@ -671,4 +671,17 @@ Long week, short night of coding.
 
 **Links to work**
 
-1. [Zine Tweet](https://twitter.com/mikekreuzer/status/838004709793280000)
+1. [Tweet](https://twitter.com/mikekreuzer/status/838004709793280000)
+
+### Day 40: March 5, 2017
+
+**Today's Progress**:
+- shuffled some Upload methods
+
+**Thoughts:**
+
+Trying to wind things up by 11:30 so I can get up in the mornings is taking its toll. This is my only coding nowadays, will need to work out a way to square that circle sustainably.
+
+**Links to work**
+
+1. [Tweet](https://twitter.com/mikekreuzer/status/838365598643970050)
