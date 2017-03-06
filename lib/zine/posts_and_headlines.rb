@@ -31,7 +31,7 @@ module Zine
       dir = @options['directories']['build']
       options = @options['options']
       templates = @options['templates']
-      [{ build_dir: dir, name: 'articles', number: @post_array.size,
+      [{ build_dir: dir, name: templates['articles'], number: @post_array.size,
          suffix: '.html', template_name: templates['articles'],
          title: 'Articles' },
        { build_dir: dir, name: 'index',

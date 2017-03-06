@@ -69,6 +69,16 @@ module Zine
       )
     end
 
+    def write_markdown(default_name, src_dir, file)
+      dir = Pathname(File.dirname(file)).relative_path_from(Pathname(src_dir))
+      file_name = "#{File.basename(file, '.*')}.html"
+      dest = File.join @options['directories']['build'], dir
+      FileUtils.mkdir_p dest
+      page = Zine::Page.new(file, File.join(dest, file_name),
+                            make_template_bundle(default_name), @options)
+      page.process File
+    end
+
     private
 
     def clean_option_paths
@@ -134,16 +144,6 @@ module Zine
       guard = posts_and_guard[:guard]
       Server.new @options['directories']['build'], @options['upload'],
                  guard.delete_array, guard.upload_array
-    end
-
-    def write_markdown(default_name, src_dir, file)
-      dir = Pathname(File.dirname(file)).relative_path_from(Pathname(src_dir))
-      file_name = "#{File.basename(file, '.*')}.html"
-      dest = File.join @options['directories']['build'], dir
-      FileUtils.mkdir_p dest
-      page = Zine::Page.new(file, File.join(dest, file_name),
-                            make_template_bundle(default_name), @options)
-      page.process File
     end
 
     def write_other_markdown_pages

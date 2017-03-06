@@ -15,7 +15,6 @@ links:
     name: Ripley
     uri: https://mikekreuzer.github.io/Ripley/
 options:
-  css_preprocessor: less
   github_name: mikekreuzer
   number_items_in_RSS: 7
   num_items_on_home: 7
