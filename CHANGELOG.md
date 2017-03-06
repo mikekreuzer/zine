@@ -685,3 +685,24 @@ Trying to wind things up by 11:30 so I can get up in the mornings is taking its 
 **Links to work**
 
 1. [Tweet](https://twitter.com/mikekreuzer/status/838365598643970050)
+
+### Day 41: March 6, 2017
+
+**Today's Progress**:
+
+- the articles page takes its name from its template
+- zine.yaml - deleted the redundant css preprocessor option
+- fixed some shouldn't-be-private method bugs
+- Ruby script added to Ripley, to generate Zine post files from the JSON
+- Ripley is now a Zine site, though this upload was via git
+
+**Thoughts:**
+
+Ripley gets (currently clumsy) navigation between months to show historical data, as well as the benefit of being a (faster to load) static site, in time for next month's first anniversary. And I got to discover all sorts of assumptions I'd made about a site living in the root directory that I'll need to translate back to the stock templates.
+
+**Links to work**
+
+1. [Ripley](https://mikekreuzer.github.io/Ripley/)
+2. [Ripley Ruby](https://github.com/mikekreuzer/Ripley/tree/master/build_table)
+3. [Zine Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet](https://twitter.com/mikekreuzer/status/838740083792470016)
