@@ -706,3 +706,24 @@ Ripley gets (currently clumsy) navigation between months to show historical data
 2. [Ripley Ruby](https://github.com/mikekreuzer/Ripley/tree/master/build_table)
 3. [Zine Repo](https://github.com/mikekreuzer/zine)
 2. [Tweet](https://twitter.com/mikekreuzer/status/838740083792470016)
+
+### Day 42: March 7, 2017
+
+**Today's Progress**:
+
+- fixed root directory assumptions in templates (images, css, links, all absolute) includes a url in the sass for the moment
+- worked around some URI.join weirdness (join for files doesn't know what dots means, & for URIs expects the first param to be root)
+- some cosmetic fixes in Ripley
+- Upload class split up, into Upload and UploadSFTP
+- UploadGitHub class added
+
+**Thoughts:**
+
+Sent some time fixing the bugs I caught yesterday, pushing things live's a good integration test sometimes. :-) Happy with Ripley for now, but will improve the build process. For April I still want to link to the JSON files, have a more natural forwards/backwards navigation between months, & table styles in the RSS. Tables might be a reason to look at Apple News again.
+
+Will push that code up tomorrow when I've seen it work. Time for a blog update, it's been two weeks. Then it's back to writing tests - it's been a week already.
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet](https://twitter.com/mikekreuzer/status/839091283897405440)

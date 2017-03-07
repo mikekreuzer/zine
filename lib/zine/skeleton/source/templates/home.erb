@@ -8,13 +8,13 @@
       <div class="tags">Tags:
         <ul>
           <% for @tag in @post[:page][:tags] %>
-            <li><a href="/tags/<%= @tag[:tag_slug] %>.html"><%= @tag[:name] %></a></li>
+            <li><a href="<%= page[:site_URL] %>/tags/<%= @tag[:tag_slug] %>.html"><%= @tag[:name] %></a></li>
           <% end %>
         </ul>
       </div>
     <% end %>
     <h2>Previously</h2>
-    <p><a href="/articles.html">Earlier posts...</a></p>
+    <p><a href="<%= page[:site_URL] %>/articles.html">Earlier posts...</a></p>
   </section>
 </main>
 <%= footer_partial %>

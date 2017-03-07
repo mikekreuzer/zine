@@ -6,7 +6,7 @@
       <h3><%= @name %></h3>
       <ul>
         <% for @post in @tag %>
-          <li><a href="/<%= @post[:destURL] %>"><%= @post[:pageTitle] %></a> <%= @post[:pageDateUS] %></li>
+          <li><a href="<%= page[:site_URL] %>/<%= @post[:destURL] %>"><%= @post[:pageTitle] %></a> <%= @post[:pageDateUS] %></li>
         <% end %>
       </ul>
     <% end %>

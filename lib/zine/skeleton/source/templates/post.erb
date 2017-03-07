@@ -7,7 +7,7 @@
     <div class="tags">Tags:
       <ul>
         <% for @tag in page[:tags] %>
-          <li><a href="/tags/<%= @tag[:tag_slug] %>.html"><%= @tag[:name] %></a></li>
+          <li><a href="<%= page[:site_URL] %>/tags/<%= @tag[:tag_slug] %>.html"><%= @tag[:name] %></a></li>
         <% end %>
       </ul>
     </div>

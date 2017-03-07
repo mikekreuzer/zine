@@ -19,6 +19,8 @@ $desktopWidth: 43em;
 $lightWeight: 300;
 $heavyWeight: 400;
 
+$siteBaseURL: 'https:\/\/mikekreuzer.com';
+
 $regularFont: GillSansRegular, 'Gill Sans MT', 'Gill Sans', 'Century Gothic', Calibri, 'Trebuchet MS', sans-serif;
 $monoFont: Consolas, Menlo, Monaco, 'Lucida Console', 'Courier New', monospace, serif;
 
@@ -150,13 +152,13 @@ body > header nav ul li {
 }
 
 .twitter {
-    background: url('/assets/webicon-twitter-m.png');
-    background-image: url('/assets/webicon-twitter.svg'), none;
+    background: url($siteBaseURL + '/assets/webicon-twitter-m.png');
+    background-image: url($siteBaseURL + '/assets/webicon-twitter.svg'), none;
 }
 
 .rss {
-    background: url('/assets/webicon-rss-m.png');
-    background-image: url('/assets/webicon-rss.svg'), none;
+    background: url($siteBaseURL + '/assets/webicon-rss-m.png');
+    background-image: url($siteBaseURL + '/assets/webicon-rss.svg'), none;
 }
 
 main {

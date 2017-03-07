@@ -42,7 +42,8 @@ module Zine
     def tag_and_uri_subprocess
       page_data = @formatted_data.page
       file_path = rel_path_from_build_dir(@dest_path).to_s
-      @formatted_data.uri = URI.join(page_data[:site_URL], file_path).to_s
+      # URI.join will expect a root directory to start...
+      @formatted_data.uri = page_data[:site_URL] + '/' + file_path
       TagData.new(page_data[:tags],
                   file_path,
                   page_data[:title],
