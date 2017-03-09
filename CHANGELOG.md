@@ -727,3 +727,25 @@ Will push that code up tomorrow when I've seen it work. Time for a blog update, 
 
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Tweet](https://twitter.com/mikekreuzer/status/839091283897405440)
+
+### Took the night off: March 8, 2017
+
+## 0.5.0
+
+### Day 43: March 9, 2017
+
+**Today's Progress**:
+
+- pushing the new upload classes
+- version bump, GitHub uploads are worth a version bump
+
+**Thoughts:**
+
+Thought about keeping the old lede para split going as an option, instead of pushing styles into the RSS (for tables).
+
+Tests have fallen to 43.33%...
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet](https://twitter.com/mikekreuzer/status/839799560339775489)

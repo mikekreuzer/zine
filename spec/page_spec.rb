@@ -86,15 +86,16 @@ describe 'Zine::Page' do
           future code monkey"> <title>Mike Kreuzer | About</title> <link
           rel="home" href="https://mikekreuzer.com/rss.xml"
           type="application/rss+xml" title="Mike Kreuzer">
-          <link rel="stylesheet" href="/screen.css"> <link
-          rel="apple-touch-icon" href="/apple-touch-icon.png"> </head> <body>
-          <div id="skiptocontent"> <a href="#maincontent">Skip to main
+          <link rel="stylesheet" href="https://mikekreuzer.com/screen.css">
+          <link rel="apple-touch-icon"
+          href="https://mikekreuzer.com/apple-touch-icon.png"> </head>
+          <body> <div id="skiptocontent"> <a href="#maincontent">Skip to main
           content</a> </div> <header> <div class="logo"></div> <h1><a
           href="https://mikekreuzer.com">Mike Kreuzer</a></h1> <nav> <ul>
           <li><a href="https://mikekreuzer.com">Home</a></li>
-          <li><a href="/articles.html">Articles</a></li> <li><a
-          href="/about.html">About</a></li> </ul><a
-          href="https://twitter.com/mikekreuzer" class="button
+          <li><a href="https://mikekreuzer.com/articles.html">Articles</a></li>
+          <li><a href="https://mikekreuzer.com/about.html">About</a></li>
+          </ul><a href="https://twitter.com/mikekreuzer" class="button
           twitter">Argue with me on Twitter</a><a
           href="https://mikekreuzer.com/rss.xml" rel="home"
           type="application/rss+xml" class="button rss">RSS Feed</a>
