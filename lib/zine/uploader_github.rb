@@ -23,7 +23,7 @@ module Zine
     end
 
     # Duplicates within & between the files already removed in Zine::Upload
-    # then .each... upload & delete - use build_dor to create relative paths
+    # then .each... upload & delete - uses @build_dir to create relative paths
     def upload
       @delete_file_array.each do |file_pathname|
         delete_file file_pathname
@@ -32,6 +32,8 @@ module Zine
         upload_file file_pathname
       end
     end
+
+    private
 
     # see if file exists, then delete it if it does
     # returns commit hash (unused)

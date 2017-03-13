@@ -749,3 +749,20 @@ Tests have fallen to 43.33%...
 
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Tweet](https://twitter.com/mikekreuzer/status/839799560339775489)
+
+### Took the night off: March 10-12, 2017
+
+### Day 44: March 13, 2017
+
+**Today's Progress**:
+
+- tests
+
+**Thoughts:**
+
+Been thinking about upcoming projects & side projects, but none of that was coding. Started in on tests again, coverage now (allegedly) at 50%.
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet](https://twitter.com/mikekreuzer/status/841227628526759936)

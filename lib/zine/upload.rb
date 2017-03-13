@@ -9,7 +9,10 @@ module Zine
   # Deploy changes to a remote host, via SFTP or using the GitHub Rest API
   class Upload
     def initialize(build_dir, options, delete_file_array, upload_file_array)
-      return if options['method'] == 'none'
+      if options['method'] == 'none'
+        @no_upload = true
+        return
+      end
       @build_dir = build_dir
       @options = options
       cred_file = options['credentials']
@@ -19,8 +22,9 @@ module Zine
       @delete_file_array = Set.new(delete_file_array).to_a - @upload_file_array
     end
 
-    def upload_decision
-      cli = HighLine.new
+    def upload_decision(query_class)
+      return if @no_upload
+      cli = query_class.new
       answer = cli.ask('Upload files? (Y/n)') { |q| q.default = 'Y' }
       return if answer != 'Y'
       puts Rainbow('Connecting...').green
@@ -37,11 +41,13 @@ module Zine
     end
 
     def github_upload
+      puts 'here we go'
       uploader = Zine::UploaderGitHub.new(@build_dir,
                                           @options,
                                           @credentials,
                                           @delete_file_array,
                                           @upload_file_array)
+      puts '---', uploader.inspect, '---'
       uploader.upload
     end
 
@@ -60,7 +66,7 @@ module Zine
       elsif @options['method'] == 'github'
         github_upload
       else
-        puts Rainbow('Unknown upload option in zine.yaml').green
+        puts Rainbow('Unknown upload option in zine.yaml').red
       end
     end
   end
