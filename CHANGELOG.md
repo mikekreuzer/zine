@@ -756,7 +756,7 @@ Tests have fallen to 43.33%...
 
 **Today's Progress**:
 
-- tests
+- tests for Upload
 
 **Thoughts:**
 
@@ -766,3 +766,20 @@ Been thinking about upcoming projects & side projects, but none of that was codi
 
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Tweet](https://twitter.com/mikekreuzer/status/841227628526759936)
+
+### Took the night off: March 14, 2017
+
+### Day 45: March 15, 2017
+
+**Today's Progress**:
+
+- tests, started for UploaderGitHub
+
+**Thoughts:**
+
+Running out of test puns...
+
+**Links to work**
+
+1. [Repo](https://github.com/mikekreuzer/zine)
+2. [Tweet](https://twitter.com/mikekreuzer/status/841975980340133889)

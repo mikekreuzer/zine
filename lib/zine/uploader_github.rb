@@ -12,7 +12,10 @@ module Zine
     # https://help.github.com/articles/creating-an-access-token-for-command-line-use/
     def initialize(build_dir, options, credentials, delete_file_array,
                    upload_file_array)
-      return unless options['method'] == 'github'
+      unless options['method'] == 'github'
+        @no_upload = true
+        return
+      end
       @build_dir = build_dir
       @repo_full_name = options['path_or_repo']
       @client = Octokit::Client.new(access_token: credentials['access_token'])
@@ -25,6 +28,7 @@ module Zine
     # Duplicates within & between the files already removed in Zine::Upload
     # then .each... upload & delete - uses @build_dir to create relative paths
     def upload
+      return if @no_upload
       @delete_file_array.each do |file_pathname|
         delete_file file_pathname
       end
