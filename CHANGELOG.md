@@ -783,3 +783,22 @@ Running out of test puns...
 
 1. [Repo](https://github.com/mikekreuzer/zine)
 2. [Tweet](https://twitter.com/mikekreuzer/status/841975980340133889)
+
+### Took the night off: March 16-17, 2017
+
+### Day 46: March 18, 2017
+
+**Today's Progress**:
+
+- tests for UploaderGitHub - found a bug, which is gratifying... would've been caught by a compiler, oh well
+
+**Thoughts:**
+
+Have firmed up my ideas for my second project - I'm still undecided whether it'll be done in Elixir or Ruby, or at a stretch Node or Go... but Phoenix 1.3's new architecture & problems I've had with Hanami installs (a postgres problem? not sure) are pushing me in the direction of Elixir.
+
+**Links to work**
+
+1. [Phoenix 1.3 talk](https://www.youtube.com/watch?v=tMO28ar0lW8)
+2. [Phoenix 1.3 pre install instructions](https://gist.github.com/chrismccord/71ab10d433c98b714b75c886eff17357)
+3. [Repo](https://github.com/mikekreuzer/zine)
+4. [Tweet](https://twitter.com/mikekreuzer/status/843427197939466240)

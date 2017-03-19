@@ -42,15 +42,15 @@ module Zine
     # see if file exists, then delete it if it does
     # returns commit hash (unused)
     def delete_file(rel_path)
-      info_hash = info github_path
+      info_hash = info rel_path
       @client.delete_contents(@repo_full_name,
                               rel_path,
                               'Zine delete', # commit message
                               info_hash[:sha],
                               branch: 'gh-pages')
-      puts "Deleted #{github_path}" if @verbose
+      puts "Deleted #{rel_path}" if @verbose
     rescue Octokit::NotFound
-      puts "Tried to delete nonexistent remote file #{github_path}"
+      puts "Tried to delete nonexistent remote file #{rel_path}"
     end
 
     # return info on a file if it exsists, otherwise throws Octokit::NotFound
