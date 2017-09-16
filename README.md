@@ -7,7 +7,7 @@ These are the very early days of zine, expect breaking changes.
 
 ## Why yet another static blog engine?
 
-Written in a #100DaysOfCode challenge -- my [progress log's here](CHANGELOG.md). Despite the [proliferation in these things][engine_list] (450!) I still find it more comfortable to use my own tools.
+Despite the [proliferation in these things][engine_list] (450!) I still find it more comfortable to use my own tools.
 
 Distinguishing features include:
 
