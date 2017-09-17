@@ -1,4 +1,4 @@
-# coding: utf-8
+
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'zine/version'
@@ -15,7 +15,7 @@ These are the very early days of zine, expect breaking changes.'
   spec.homepage      = 'https://github.com/mikekreuzer/zine'
   spec.license       = 'MIT'
 
-  spec.files = Dir.glob('{bin,lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
+  spec.files = Dir.glob('{bin,lib}/**/*') + %w[LICENSE README.md CHANGELOG.md]
   spec.bindir        = 'bin'
   spec.executables   = 'zine'
   spec.require_paths = ['lib']
@@ -23,10 +23,10 @@ These are the very early days of zine, expect breaking changes.'
   spec.required_ruby_version = '>= 2.2.2' # to match rails
 
   spec.add_development_dependency 'bundler', '~> 1.13'
-  spec.add_development_dependency 'curb', '~> 0.9.3'
-  spec.add_development_dependency 'rake', '~> 12.0'
-  spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'simplecov', '~> 0.13'
+  spec.add_development_dependency 'curb', '~> 0.9.4'
+  spec.add_development_dependency 'rake', '~> 12.1'
+  spec.add_development_dependency 'rspec', '~> 3.6'
+  spec.add_development_dependency 'simplecov', '~> 0.15.1'
 
   # spec.add_dependency 'concurrent-ruby', '~> 1.0', '>= 1.0.2'
   spec.add_dependency 'highline', '~> 1.7', '>= 1.7.8'

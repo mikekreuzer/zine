@@ -25,14 +25,14 @@
 - pages that aren't blog posts (eg about)
 - started into RSS/Atom feeds, and the standard library docs are borderline nonexistent
 
-## v0.1.0, February 6, 2017
+## 0.1.0, February 6, 2017
 
 - claimed the feed content is xhtml to get it to work, will revisit & fix this with CDATA
 - started testing the engine against old blog posts
 - first code to GitHub
 - gem published
 
-## v0.2.0, February 9, 2017
+## 0.2.0, February 9, 2017
 
 - RSS now using DataPage & ERB, with CDATA tags
 - added Ruby 2.0 as a minimum to the gemspec
@@ -41,7 +41,7 @@
 - added 'skip to main content' back into the header partial
 - some bug fixes & minor refactoring
 
-## v0.3.0, February 19, 2017
+## 0.3.0, February 19, 2017
 
 - moved the local post directory creation to the write method
 - added a minimalist version of building additional posts while build is running
@@ -96,10 +96,9 @@
 - Upload class split up, into Upload and UploadSFTP
 - UploadGitHub class added - GitHub uploads
 
-## Towards 0.6.0
+## 0.6.0, September 17, 2017
 
-- tests for Upload
-- tests, started for UploaderGitHub
-- tests for UploaderGitHub - found a bug, which is gratifying... would've been caught by a compiler, oh well
+- tests: for Upload & UploaderGitHub - found a bug, which is gratifying... would've been caught by a compiler, oh well
 - fixed a mismatched div tag in the footer
 - changed to a non 100 days of code change log
+- updated some development dependencies (curb, rake, rspec, simplecov)

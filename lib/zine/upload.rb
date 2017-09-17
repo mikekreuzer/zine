@@ -16,8 +16,7 @@ module Zine
       @build_dir = build_dir
       @options = options
       cred_file = options['credentials']
-      @credentials = parse_yaml(File.open(cred_file, 'r'), cred_file)
-
+      @credentials = read_credentials(cred_file)
       @upload_file_array = Set.new(upload_file_array).to_a
       @delete_file_array = Set.new(delete_file_array).to_a - @upload_file_array
     end
@@ -40,8 +39,14 @@ module Zine
       { 'username' => '', 'password' => '' }
     end
 
+    def read_credentials(cred_file)
+      parse_yaml(File.open(cred_file, 'r'), cred_file)
+    rescue Errno::ENOENT
+      puts Rainbow('Path to upload credentials missing from zine.yaml').red
+      exit
+    end
+
     def github_upload
-      puts 'here we go'
       uploader = Zine::UploaderGitHub.new(@build_dir,
                                           @options,
                                           @credentials,

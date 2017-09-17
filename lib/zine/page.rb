@@ -48,7 +48,7 @@ module Zine
 
       def parse_date(front_matter_date)
         DateTime.rfc3339(front_matter_date).strftime('%B %-d, %Y')
-      rescue
+      rescue ArgumentError
         ''
       end
 
@@ -101,7 +101,7 @@ module Zine
         @raw_text,
         input: 'GFM',
         auto_ids: false,
-        smart_quotes: %w(apos apos quot quot),
+        smart_quotes: %w[apos apos quot quot],
         syntax_highlighter: 'rouge'
       ).to_html
       @raw_text = nil
