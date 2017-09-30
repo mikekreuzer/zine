@@ -26,7 +26,7 @@ module Zine
       deploy
     rescue Errno::ENETUNREACH
       puts Rainbow("Unable to connect to #{upload_options['host']}").red
-    rescue Net::SSH::AuthenticationFailed
+    rescue Net::SSH::AuthenticationFailed, NameError
       puts Rainbow("Authentication failed for #{upload_options['host']}").red
       puts 'Check your credential file, and maybe run ssh-add?'
     end

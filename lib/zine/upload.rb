@@ -40,7 +40,7 @@ module Zine
     end
 
     def read_credentials(cred_file)
-      parse_yaml(File.open(cred_file, 'r'), cred_file)
+      parse_yaml(File.read(cred_file), cred_file)
     rescue Errno::ENOENT
       puts Rainbow('Path to upload credentials missing from zine.yaml').red
       exit

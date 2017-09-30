@@ -102,3 +102,8 @@
 - fixed a mismatched div tag in the footer
 - changed to a non 100 days of code change log
 - updated some development dependencies (curb, rake, rspec, simplecov)
+
+## 0.7.0, September 30, 2017
+
+- caught an SFTP upload error where SFTP credentials aren't in the keychain
+- updated bundler
