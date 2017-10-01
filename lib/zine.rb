@@ -69,6 +69,45 @@ module Zine
       )
     end
 
+    # currently used to say yes on a script's behalf - in #notice
+    class MockHighlineYes
+      def ask(_question)
+        'Y'
+      end
+    end
+
+    # Build the site, noticing this file as having changed
+    # Called by CLI#notice
+    def notice(file)
+      # build
+      init_templates
+      FileUtils.mkdir_p @options['directories']['build']
+      # posts_and_headlines_without_writing
+      posts = Zine::PostsAndHeadlines.new self, @options # starts watcher
+      posts_and_guard = posts.writeless
+      guard = posts_and_guard[:guard]
+
+      # give the file watchers something to notice
+      file_to_notice = File.join Dir.getwd,
+                                 @options['directories']['posts'],
+                                 file
+      posts.one_new_post file_to_notice
+      sleep 0.25
+      posts.one_new_post file_to_notice # overcome latency in the watcher...
+
+      # TODO: everywhere
+      guard.listener_array.each(&:stop)
+
+      # preview posts_and_guard -- no preview needed...
+      return if @options['upload']['method'] == 'none' ||
+                (guard.delete_array.empty? && guard.upload_array.empty?)
+      uploader = Zine::Upload.new @options['directories']['build'],
+                                  @options['upload'],
+                                  guard.delete_array,
+                                  guard.upload_array
+      uploader.upload_decision MockHighlineYes
+    end
+
     def write_markdown(default_name, src_dir, file)
       dir = Pathname(File.dirname(file)).relative_path_from(Pathname(src_dir))
       file_name = "#{File.basename(file, '.*')}.html"
@@ -83,7 +122,7 @@ module Zine
 
     def clean_option_paths
       directories = @options['directories']
-      %w(assets posts styles templates).each do |dir|
+      %w[assets posts styles templates].each do |dir|
         directories[dir] = File.join directories['source'], directories[dir]
       end
       directories['blog'] = File.join directories['build'], directories['blog']

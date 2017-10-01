@@ -52,7 +52,6 @@ module Zine
                                           @credentials,
                                           @delete_file_array,
                                           @upload_file_array)
-      puts '---', uploader.inspect, '---'
       uploader.upload
     end
 

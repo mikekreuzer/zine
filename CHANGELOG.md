@@ -107,3 +107,8 @@
 
 - caught an SFTP upload error where SFTP credentials aren't in the keychain
 - updated bundler
+
+## 0.8.0, October 2, 2017
+
+- SFTP upload error wasn't caught in 0.7.0... TODO
+- added a notice command, zine notice [FILE], which adds that file to the build queue without having to force a general build, so zine can be called in scripts to upload particular files (a rake script in Ripley, specifically)

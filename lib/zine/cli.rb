@@ -37,6 +37,13 @@ module Zine
       puts Rainbow('Site built').green
     end
 
+    desc 'notice POST', 'Build the site, then force the one POST'
+    def notice(file)
+      init_site
+      @the_site.notice(file)
+      puts Rainbow('Site built').green
+    end
+
     desc 'nuke', 'Delete the build folder'
     def nuke
       init_site

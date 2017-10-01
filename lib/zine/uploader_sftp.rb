@@ -25,9 +25,9 @@ module Zine
       delete
       deploy
     rescue Errno::ENETUNREACH
-      puts Rainbow("Unable to connect to #{upload_options['host']}").red
+      puts Rainbow("Unable to connect to #{@host}").red
     rescue Net::SSH::AuthenticationFailed, NameError
-      puts Rainbow("Authentication failed for #{upload_options['host']}").red
+      puts Rainbow("Authentication failed for #{@host}").red
       puts 'Check your credential file, and maybe run ssh-add?'
     end
 
@@ -40,8 +40,10 @@ module Zine
     end
 
     def delete
-      Net::SFTP.start(@host, @credentials['username'],
-                      password: @credentials['password']) do |sftp|
+      Net::SFTP.start(@host,
+                      @credentials['username'],
+                      password: @credentials['password'],
+                      auth_methods: %w[publickey password]) do |sftp|
         @delete_file_array.each do |rel_file_path|
           sftp.remove(File.join(@path, rel_file_path)).wait
           puts "Deleted #{rel_file_path}" if @verbose
@@ -50,8 +52,10 @@ module Zine
     end
 
     def deploy
-      Net::SFTP.start(@host, @credentials['username'],
-                      password: @credentials['password']) do |sftp|
+      Net::SFTP.start(@host,
+                      @credentials['username'],
+                      password: @credentials['password'],
+                      auth_methods: %w[publickey password]) do |sftp|
         deploy_directories sftp
         deploy_files sftp
       end
