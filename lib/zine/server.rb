@@ -3,7 +3,6 @@ require 'rainbow'
 require 'rack'
 require 'thin'
 require 'zine/upload'
-require 'zine/watcher'
 
 module Zine
   # Local preview web server

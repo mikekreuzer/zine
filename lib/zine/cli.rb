@@ -55,20 +55,22 @@ module Zine
     desc 'post TITLE', 'Create the file for a new blog post, titled TITLE'
     def post(name)
       init_site
-      option_dir = @the_site.options['directories']
+      options = @the_site.options
+      option_dir = options['directories']
       Zine::CLI.source_root option_dir['templates']
       @date = DateTime.now
       @name = name
       file = "#{@date.strftime('%Y-%m-%d')}-#{Zine::Page.slug(name)}.md"
-      new_post_name = @the_site.options['templates']['new_post']
+      new_post_name = options['templates']['new_post']
       template new_post_name,
                File.join(Dir.pwd, option_dir['posts'], file)
     end
 
     desc 'site', 'Create the skeleton of a new site (overwriting files)'
     def site
-      @skeleton_dir = File.join File.dirname(__FILE__), 'skeleton', '/.'
-      FileUtils.cp_r @skeleton_dir, Dir.pwd
+      # @skeleton_dir ?
+      skeleton_dir = File.join File.dirname(__FILE__), 'skeleton', '/.'
+      FileUtils.cp_r skeleton_dir, Dir.pwd
       puts Rainbow('New skeleton site created').green
     end
 

@@ -112,3 +112,8 @@
 
 - SFTP upload error wasn't caught in 0.7.0... TODO
 - added a notice command, zine notice [FILE], which adds that file to the build queue without having to force a general build, so zine can be called in scripts to upload particular files (a rake script in Ripley, specifically)
+
+# 0.9.0, January 1, 2018
+
+- a bug in 'zine notice' involving full & partial paths that duplicated the post to notice on the history page, fixed
+- minor code clean-up in cli.rb and server.rb

@@ -12,7 +12,9 @@ module Zine
   # A page on the site where the content comes from a file's markdown, and the
   # destination's location mirrors its own
   class Page
-    attr_reader :dest_path, :formatted_data, :source_file, :template_bundle
+    attr_accessor :source_file # used in zine notice --
+    # PostsAndHeadlines.one_new_post
+    attr_reader :dest_path, :formatted_data, :template_bundle
     # the meta data, passed formatted to the template
     class FormattedData
       include ERB::Util

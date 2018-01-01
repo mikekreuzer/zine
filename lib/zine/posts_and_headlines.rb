@@ -1,6 +1,7 @@
 require 'zine/data_page'
 require 'zine/post'
 require 'zine/tag'
+require 'zine/watcher'
 
 module Zine
   # The blog posts and their associate headline files (the home page, an
@@ -42,14 +43,24 @@ module Zine
          template_name: templates['rss'], title: '' }]
     end
 
-    def one_new_post(source_file)
+    def once_only(source_file)
+      @post_array = @post_array.delete_if do |post|
+        post.source_file == source_file
+      end
+    end
+
+    def one_new_post(source_file, source_full_path)
+      once_only(source_file)
       post_name = @options['templates']['post']
-      @post_array << Zine::Post.new(source_file,
+      @post_array << Zine::Post.new(source_full_path,
                                     @site.make_template_bundle(post_name),
                                     @options)
+      @post_array.last.source_file = source_file # TODO: path when this's frozen
       @tags_by_post << @post_array.last.process(File)
-      # TODO: may need to reorder posts by date, and therefor redo tags
+      dest_path = @post_array.last.dest_path
+      sort_posts_by_date
       write_tags_and_headlines
+      dest_path
     end
 
     # get build file from post or location, delete build, remove form post_array
@@ -121,8 +132,8 @@ module Zine
       @post_array[index] = Zine::Post.new post.source_file,
                                           post.template_bundle, @options
       @tags_by_post[index] = @post_array[index].process File
+      sort_posts_by_date
       write_tags_and_headlines
-      # TODO: may need to reorder posts by date... means re-doing tags
     end
 
     # Read markdown files in the posts folder into an array of Posts

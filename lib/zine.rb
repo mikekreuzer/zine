@@ -78,6 +78,7 @@ module Zine
 
     # Build the site, noticing this file as having changed
     # Called by CLI#notice
+    # TODO: common function call across other methods
     def notice(file)
       # build
       init_templates
@@ -87,13 +88,13 @@ module Zine
       posts_and_guard = posts.writeless
       guard = posts_and_guard[:guard]
 
-      # give the file watchers something to notice
-      file_to_notice = File.join Dir.getwd,
-                                 @options['directories']['posts'],
-                                 file
-      posts.one_new_post file_to_notice
-      sleep 0.25
-      posts.one_new_post file_to_notice # overcome latency in the watcher...
+      # build the file & add it to the upload array
+      posts_dir = @options['directories']['posts']
+      file_to_notice = File.join posts_dir, file
+      path_to_notice = File.join Dir.getwd, file_to_notice
+
+      dest_path = posts.one_new_post file_to_notice, path_to_notice
+      guard.notice(dest_path)
 
       # TODO: everywhere
       guard.listener_array.each(&:stop)

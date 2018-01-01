@@ -16,6 +16,10 @@ module Zine
       @listener_array = []
     end
 
+    def notice(file_name)
+      @upload_array << file_name
+    end
+
     # Build a delete list & an upload list for SSH from changes in build,
     # & rebuild & reload on changes in source
     def start
