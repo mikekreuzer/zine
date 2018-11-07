@@ -117,3 +117,11 @@
 
 - a bug in 'zine notice' involving full & partial paths that duplicated the post to notice on the history page, fixed
 - minor code clean-up in cli.rb and server.rb
+
+# 0.10.0, November 7, 2018
+
+- dependency version bumps
+
+# 0.11.0, November 7, 2018
+
+- fixed a bug where String#split would break apart markdown files on tables as well as at the metadata/markdown boundary

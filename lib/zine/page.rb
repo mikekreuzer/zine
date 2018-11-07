@@ -66,7 +66,7 @@ module Zine
 
     def initialize(md_file_name, dest, templates, site_options)
       @source_file = md_file_name
-      file_parts = File.open(md_file_name, 'r').read.split('---')
+      file_parts = File.open(md_file_name, 'r').read.split('---', 3)
       @formatted_data = FormattedData.new(parse_yaml(file_parts[1],
                                                      md_file_name),
                                           site_options)
