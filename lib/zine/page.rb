@@ -2,6 +2,7 @@ require 'erb'
 require 'date'
 require 'htmlcompressor'
 require 'kramdown'
+require 'kramdown-parser-gfm'
 require 'pathname'
 require 'rainbow'
 require 'yaml'
@@ -39,7 +40,8 @@ module Zine
                   site_URL: site['site_URL'],
                   tags: slugify_tags(front_matter['tags']),
                   title: html_escape(front_matter['title']),
-                  twitter_name: site['twitter_name'] }
+                  twitter_name: site['twitter_name'],
+                  uri: '' } # uri only generated for posts, and not until after markdown, TO DO
       end
 
       def public_binding
@@ -104,7 +106,6 @@ module Zine
         input: 'GFM',
         auto_ids: false,
         smart_quotes: %w[apos apos quot quot],
-        syntax_highlighter: 'rouge'
       ).to_html
       @raw_text = nil
     end

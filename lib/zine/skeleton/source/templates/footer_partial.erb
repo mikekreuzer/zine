@@ -1,23 +1,26 @@
   <footer>
-    <div class="column">
-      <h3>Contact me</h3>
-      <p>Twitter:&nbsp;<a href="https://twitter.com/<%= page[:twitter_name] %>">@<%= page[:twitter_name] %></a></p>
-    </div>
-    <div class="column">
-      <h3>Me elsewhere</h3>
-      <ul>
-      <% for @link in page[:links_array] %>
-        <li><a href="<%= @link['uri'] %>"><%= @link['name'] %></a></li>
-      <% end %>
+  <div class="column">
+    <h3>Contact me</h3>
+    <ul class="contact-list">
+      <li><a href="https://twitter.com/<%= page[:twitter_name] %>" class="button twitter"><span>Twitter</span></a></li>
+      <li><a href="<%= page[:site_URL] %>/rss.xml" rel="home" type="application/rss+xml" class="button rss"><span>Subscribe</span></a></li>
     </ul>
-    </div>
-    <div class="column">
-      <h3>The fine print</h3>
-      <ul>
-        <li>Built with <a href="https://github.com/mikekreuzer/zine">Zine</a></li>
-        <li>&copy; 2017<span> <%= page[:site_author] %></span></li>
-      </ul>
-    </div>
+  </div>
+  <div class="column">
+    <h3>Me elsewhere</h3>
+    <ul>
+    <% for @link in page[:links_array] %>
+      <li><a href="<%= @link['uri'] %>"><%= @link['name'] %></a></li>
+    <% end %>
+  </ul>
+  </div>
+  <div class="column">
+    <h3>The fine print</h3>
+    <ul>
+      <li>Built with <a href="https://github.com/mikekreuzer/zine">Zine</a></li>
+      <li>&copy; 2019<span> <%= page[:site_author] %></span></li>
+    </ul>
+  </div>
   </footer>
-  </body>
+</body>
 </html>

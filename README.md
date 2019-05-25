@@ -1,20 +1,19 @@
 # zine
+
+[![Gem Version](https://badge.fury.io/rb/zine.svg)](https://badge.fury.io/rb/zine)
+
 Yet another blog aware static site generator.
-
-## Warning: pre-release code
-
-These are the very early days of zine, expect breaking changes.
 
 ## Why yet another static blog engine?
 
-Despite the [proliferation in these things][engine_list] (450!) I still find it more comfortable to use my own tools.
+Despite the [proliferation in these things][engine_list] (!) I still find it more comfortable to use my own tools.
 
 Distinguishing features include:
 
 - ERB templates
 - Sass stylesheets
 - fast incremental builds
-- SFTP file uploads
+- GitHub & SFTP file uploads
 
 Presented here in the hope it's of use to someone else too.
 
@@ -76,14 +75,9 @@ Commands:
 
 ### Up next
 
-This is only a first cut at this gem, the stuff I considered a (barely) minimum viable product. Up next are:
+Many versions on this is only an early cut of this gem, the stuff I considered a (barely) minimum viable product. More to come...
 
-- migration scripts from eg Jekyll? Maybe.
-- Apple News
-- much refactoring
-- docs
-- tests, lots of tests
-- and a few other things
+A brief TODO list at the end of the change log.
 
 ## Contributing
 
@@ -92,7 +86,7 @@ Yes please. Bug reports and pull requests are welcome on GitHub at https://githu
 ## Tests
 
 ```shell
-bundle exec rspec spec # or your alias for that
+rake
 ```
 
 ## License

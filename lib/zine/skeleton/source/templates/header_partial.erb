@@ -6,8 +6,9 @@
     <meta name="description" content="<%= page[:site_description] %>">
     <title><%= page[:site_name] %> | <%= page[:title] %></title>
     <link rel="home" href="<%= page[:site_URL] %>/rss.xml" type="application/rss+xml" title="<%= page[:site_name] %>">
-    <link rel="stylesheet" href="<%= page[:site_URL] %>/screen.css">
-    <link rel="apple-touch-icon" href="<%= page[:site_URL] %>/apple-touch-icon.png">
+    <link rel="stylesheet" href="/screen.css">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!--<link rel="canonical" href="<%= page[:uri] %>" />-->
   </head>
   <body>
     <div id="skiptocontent">
@@ -19,9 +20,10 @@
       <nav>
         <ul>
           <li><a href="<%= page[:site_URL] %>">Home</a></li>
-          <li><a href="<%= page[:site_URL] %>/articles.html">Articles</a></li>
-          <li><a href="<%= page[:site_URL] %>/about.html">About</a></li>
-        </ul><a href="https://twitter.com/<%= page[:twitter_name] %>" class="button twitter">Argue with me on Twitter</a><a href="<%= page[:site_URL] %>/rss.xml" rel="home" type="application/rss+xml" class="button rss">RSS Feed</a>
+          <li><a href="/articles.html">Articles</a></li>
+          <li><a href="/tags/index.html">Tags</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
       </nav>
     </header>
     <a name="maincontent"></a>

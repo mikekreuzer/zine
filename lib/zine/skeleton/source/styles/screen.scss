@@ -19,8 +19,6 @@ $desktopWidth: 43em;
 $lightWeight: 300;
 $heavyWeight: 400;
 
-$siteBaseURL: 'https:\/\/mikekreuzer.com';
-
 $regularFont: GillSansRegular, 'Gill Sans MT', 'Gill Sans', 'Century Gothic', Calibri, 'Trebuchet MS', sans-serif;
 $monoFont: Consolas, Menlo, Monaco, 'Lucida Console', 'Courier New', monospace, serif;
 
@@ -61,21 +59,21 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 h1 {
-    font-weight: $lightWeight;
-    font-size: 2.618em;
-    margin: 1.809em 0 0.809em;
+  font-weight: $lightWeight;
+  font-size: 2.618em;
+  margin: 1.809em 0 0.809em;
 }
 
 h2 {
-    font-weight: $lightWeight;
-    font-size: 1.618em;
-    margin: 1.809em 0 0.809em;
+  font-weight: $lightWeight;
+  font-size: 1.618em;
+  margin: 1.809em 0 0.809em;
 }
 
 h3, h4, h5, h6 {
-    font-weight: $heavyWeight;
-    font-size: 1em;
-    margin: 1.809em 0 0.809em;
+  font-weight: $heavyWeight;
+  font-size: 1em;
+  margin: 1.809em 0 0.809em;
 }
 
 p, li {
@@ -141,24 +139,26 @@ body > header nav ul li {
   list-style: none;
 }
 
+.contact-list span {
+  margin-left: 40px;
+}
+
 .button {
-    width: 30px;
-    height: 30px;
-    display: inline-block;
-    background-size: 100%;
-    text-indent: -999em;
-    text-align: left;
-    margin: 20px;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  background-size: 100%;
+  text-align: left;
 }
 
 .twitter {
-    background: url($siteBaseURL + '/assets/webicon-twitter-m.png');
-    background-image: url($siteBaseURL + '/assets/webicon-twitter.svg'), none;
+  background: url('/assets/webicon-twitter-m.png');
+  background-image: url('/assets/webicon-twitter.svg'), none;
 }
 
 .rss {
-    background: url($siteBaseURL + '/assets/webicon-rss-m.png');
-    background-image: url($siteBaseURL + '/assets/webicon-rss.svg'), none;
+  background: url('/assets/webicon-rss-m.png');
+  background-image: url('/assets/webicon-rss.svg'), none;
 }
 
 main {
@@ -185,8 +185,9 @@ footer {
 
 footer .column {
   float: left;
-  width: 33%;
+  padding: 1px;
   text-align: left;
+  width: 32%;
 }
 
 footer .column ul { list-style: none; }
@@ -194,18 +195,18 @@ footer .column a, .tags a { color:$linkColour; text-decoration: none; }
 footer .column a:hover, .tags a:hover   { color:$hoverColour; text-decoration: underline; }
 
 .tags ul li {
-    list-style: none;
-    display: inline;
-    font-variant: small-caps;
-    font-size:1.2em;
+  list-style: none;
+  display: inline;
+  font-variant: small-caps;
+  font-size:1.2em;
 }
 
 .archive a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 ul.archive, ul.archive ul {
-    margin-left: 0;
+  margin-left: 0;
 }
 
 ul.archive li, ul.archive ul li {
@@ -234,7 +235,7 @@ footer .rss img {
 
 
 p.date {
-    color: $mediumGrey;
+  color: $mediumGrey;
 }
 
 /*.post ul, .post ol {
@@ -242,14 +243,14 @@ p.date {
 }*/
 
 pre {
-    background-color: $codeBackgroundColour;
-    padding: 1em;
-    white-space: pre-wrap;
-    /* why necessary */
-    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-    white-space: -pre-wrap;      /* Opera 4-6 */
-    white-space: -o-pre-wrap;    /* Opera 7 */
-    word-wrap: break-word;
+  background-color: $codeBackgroundColour;
+  padding: 1em;
+  white-space: pre-wrap;
+  /* why necessary */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;
 }
 
 code {
@@ -268,12 +269,33 @@ code {
   background-color: $codeBackgroundColour;
 }*/
 
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+th, td {
+  border: solid $lightGrey 1px;
+  padding: 0.5em 1.5em;
+}
+
 /* quotes */
 blockquote {
   margin: 2em 2em 2em 1em;
   padding: 0 .75em 0 1.25em;
   border-left: 2px solid $borderColour;
   border-right: 0px solid $borderColour;
+}
+
+.chart-png {
+  margin: 2em 0 2em;
+  width:90%; 
+}
+
+.logo-png {
+  float:left;
+  margin-bottom:18px;
+  margin-right: 24px;
 }
 
 @media all and (max-width: 736px) {
@@ -286,11 +308,11 @@ blockquote {
   p {
     margin-bottom:2em;
   }
-  .button {
+  /*.button {
     width: 50px;
     height: 50px;
     margin: 20px;
-  }
+  }*/
   footer .column {
     width: 100%;
   }

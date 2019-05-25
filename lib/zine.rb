@@ -70,7 +70,7 @@ module Zine
     end
 
     # currently used to say yes on a script's behalf - in #notice
-    class MockHighlineYes
+    class MockYes
       def ask(_question)
         'Y'
       end
@@ -106,7 +106,7 @@ module Zine
                                   @options['upload'],
                                   guard.delete_array,
                                   guard.upload_array
-      uploader.upload_decision MockHighlineYes
+      uploader.upload_decision MockYes
     end
 
     def write_markdown(default_name, src_dir, file)

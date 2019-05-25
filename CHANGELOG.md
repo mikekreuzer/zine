@@ -125,3 +125,33 @@
 # 0.11.0, November 7, 2018
 
 - fixed a bug where String#split would break apart markdown files on tables as well as at the metadata/markdown boundary
+
+# 0.12.0 - never pushed, used up until 25 April 2019
+
+- added (then removed) Mastodon from the list of contacts, changed the styling a few times, neglected to publish
+
+# 0.13.0 - lucky 13 - 
+
+- added some of the style changes that survived from v12, eg moved social media to the footer
+- added a (permissive as they come) robots.txt file
+- dependency updates, kramdown split into kramdown & kramdown-parser-gfm which seems to be slower :-(
+- bumped the required version of Ruby to 2.3 (for bundler, kramdown, etc)
+- dropped the highline gem (it was only used to get the one input, originally there was going to be more)
+- minor readme updates
+- placeholder site, mostly in case there's ever an app: https://zine.dev
+
+TO DO
+- add canonical links to page headers, means the build order needs to change...
+- generate sitemap.xml
+- add an AWS S3 uploader
+- add AWS CloudFront invalidation
+- fix the SFTP error from 0.7/0.8, also likely applies to S3
+- make sure the server's killed on errors (eg if no credentials) so can run it again later without a port conflict
+- tests, lots of tests
+
+MAY DO
+- concurrent-ruby gem
+- migration scripts from eg Jekyll?
+- Apple News
+- much refactoring
+- an app

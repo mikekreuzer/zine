@@ -1,4 +1,3 @@
-require 'highline'
 require 'rainbow'
 require 'set'
 require 'zine'
@@ -24,7 +23,7 @@ module Zine
     def upload_decision(query_class)
       return if @no_upload
       cli = query_class.new
-      answer = cli.ask('Upload files? (Y/n)') { |q| q.default = 'Y' }
+      answer = cli.call 'Upload files? (Y/n)'
       return if answer != 'Y'
       puts Rainbow('Connecting...').green
       upload

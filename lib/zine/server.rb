@@ -1,4 +1,4 @@
-require 'highline'
+require 'zine/query'
 require 'rainbow'
 require 'rack'
 require 'thin'
@@ -67,7 +67,7 @@ module Zine
                 (@delete_array.empty? && @upload_array.empty?)
       uploader = Zine::Upload.new rel_path_build, upload_options,
                                   @delete_array, @upload_array
-      uploader.upload_decision HighLine
+      uploader.upload_decision Query
     end
   end
 end

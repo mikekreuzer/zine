@@ -49,14 +49,14 @@ describe 'Zine::Upload' do
 
   describe '#upload_decision' do
     # Mock CLI interactions - computer says Yes
-    class MockHighlineYes
+    class MockYes
       def ask(_question)
         'Y'
       end
     end
 
     # Mock CLI interactions - computer says No
-    class MockHighlineNo
+    class MockNo
       def ask(_question)
         'N'
       end
@@ -83,7 +83,7 @@ describe 'Zine::Upload' do
           .and_return('connection attempt')
         try_and_github = Zine::Upload.new '', options, [], []
         expect do
-          expect(try_and_github.upload_decision(MockHighlineYes))
+          expect(try_and_github.upload_decision(MockYes))
             .to eql 'connection attempt'
         end.to output(/Connecting.../).to_stdout
       end
@@ -100,7 +100,7 @@ describe 'Zine::Upload' do
           .and_return('connection attempt')
         try_and_sftp = Zine::Upload.new '', options, [], []
         expect do
-          expect(try_and_sftp.upload_decision(MockHighlineYes))
+          expect(try_and_sftp.upload_decision(MockYes))
             .to eql 'connection attempt'
         end.to output(/Connecting.../).to_stdout
       end
@@ -110,7 +110,7 @@ describe 'Zine::Upload' do
       it 'outputs a warning if the user replies that they want to upload' do
         options = { 'method' => 'gibberish', 'credentials' => 'fake_file.yaml' }
         do_warning = Zine::Upload.new '', options, [], []
-        expect { do_warning.upload_decision(MockHighlineYes) }.to output(
+        expect { do_warning.upload_decision(MockYes) }.to output(
           /Unknown upload option in zine.yaml/
         ).to_stdout
       end
@@ -120,7 +120,7 @@ describe 'Zine::Upload' do
       it 'does nothing' do
         options = { 'method' => 'sftp', 'credentials' => 'fake_file.yaml' }
         do_nothing = Zine::Upload.new '', options, [], []
-        expect(do_nothing.upload_decision(MockHighlineNo)).to eql nil
+        expect(do_nothing.upload_decision(MockNo)).to eql nil
       end
     end
   end
