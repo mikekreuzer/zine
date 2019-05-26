@@ -3,7 +3,8 @@ module Zine
   class Query
     def call(question)
       puts question
-      $stdin.gets.chomp
+      result = $stdin.gets.chomp
+      result == '' ? 'Y' : result
     end
   end
 end

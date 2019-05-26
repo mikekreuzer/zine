@@ -33,8 +33,9 @@ templates:
   tag: tag
   tag_index: tag_index
 upload:
+  cloudfront_distrib: ID or ''
   credentials: /local/absolute/path/to/yaml/file/with/username/password/or/access_token
-  host: 127.0.0.1
-  method: none|github|sftp
+  host: eg 127.0.0.1, or for AWS region:bucket_name
+  method: none|aws|github|sftp
   path_or_repo: /remote/absolute/path/to/html|fullname/repo
   verbose: true

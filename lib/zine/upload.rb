@@ -1,11 +1,12 @@
 require 'rainbow'
 require 'set'
 require 'zine'
+require 'zine/uploader_aws'
 require 'zine/uploader_github'
 require 'zine/uploader_sftp'
 
 module Zine
-  # Deploy changes to a remote host, via SFTP or using the GitHub Rest API
+  # Deploy changes to a remote host, via SFTP or using the AWS or GitHub API
   class Upload
     def initialize(build_dir, options, delete_file_array, upload_file_array)
       if options['method'] == 'none'
@@ -45,6 +46,15 @@ module Zine
       exit
     end
 
+    def aws_upload
+      uploader = Zine::UploaderAWS.new(@build_dir,
+                                       @options,
+                                       @credentials,
+                                       @delete_file_array,
+                                       @upload_file_array)
+      uploader.upload
+    end
+
     def github_upload
       uploader = Zine::UploaderGitHub.new(@build_dir,
                                           @options,
@@ -64,7 +74,9 @@ module Zine
     end
 
     def upload
-      if @options['method'] == 'sftp'
+      if @options['method'] == 'aws'
+        aws_upload
+      elsif @options['method'] == 'sftp'
         sftp_upload
       elsif @options['method'] == 'github'
         github_upload

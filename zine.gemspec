@@ -1,4 +1,3 @@
-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'zine/version'
@@ -28,6 +27,8 @@ There are many like it, but this one is mine.'
   spec.add_development_dependency 'rspec', '~> 3.8'
   spec.add_development_dependency 'simplecov', '~> 0.16.1'
 
+  spec.add_dependency 'aws-sdk-cloudfront', '~> 1.18'
+  spec.add_dependency 'aws-sdk-s3', '~> 1.40'
   spec.add_dependency 'htmlcompressor', '~> 0.4.0'
   spec.add_dependency 'kramdown', '~> 2.1'
   spec.add_dependency 'kramdown-parser-gfm', '~> 1.0', '>= 1.0.1'

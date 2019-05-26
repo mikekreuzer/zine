@@ -6,14 +6,14 @@ Yet another blog aware static site generator.
 
 ## Why yet another static blog engine?
 
-Despite the [proliferation in these things][engine_list] (!) I still find it more comfortable to use my own tools.
+Despite the [proliferation in these things][engine_list] (!) I still find it more comfortable to use my own tools, changing them to suit my changing needs, for example here as I've moved between GitHub, EC2 & S3 hosts.
 
 Distinguishing features include:
 
 - ERB templates
 - Sass stylesheets
 - fast incremental builds
-- GitHub & SFTP file uploads
+- a choice of AWS S3, GitHub & SFTP file uploads
 
 Presented here in the hope it's of use to someone else too.
 

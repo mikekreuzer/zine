@@ -126,11 +126,11 @@
 
 - fixed a bug where String#split would break apart markdown files on tables as well as at the metadata/markdown boundary
 
-# 0.12.0 - never pushed, used up until 25 April 2019
+# 0.12.0 - never pushed, used up until April 25, 2019
 
 - added (then removed) Mastodon from the list of contacts, changed the styling a few times, neglected to publish
 
-# 0.13.0 - lucky 13 - 
+# 0.13.0 - lucky 13 - May 26, 2019
 
 - added some of the style changes that survived from v12, eg moved social media to the footer
 - added a (permissive as they come) robots.txt file
@@ -140,11 +140,15 @@
 - minor readme updates
 - placeholder site, mostly in case there's ever an app: https://zine.dev
 
+# 0.14.0 - May 27, 2019
+- added an AWS S3 uploader
+- added AWS CloudFront invalidation
+- added zine.dev to the footer template
+- bug fix - catch carriage returns as default yes answers to the upload? question
+
 TO DO
 - add canonical links to page headers, means the build order needs to change...
 - generate sitemap.xml
-- add an AWS S3 uploader
-- add AWS CloudFront invalidation
 - fix the SFTP error from 0.7/0.8, also likely applies to S3
 - make sure the server's killed on errors (eg if no credentials) so can run it again later without a port conflict
 - tests, lots of tests
@@ -153,5 +157,5 @@ MAY DO
 - concurrent-ruby gem
 - migration scripts from eg Jekyll?
 - Apple News
-- much refactoring
-- an app
+- much refactoring, frozen_string_literal, split monster classes, etc
+- an app... maybe
