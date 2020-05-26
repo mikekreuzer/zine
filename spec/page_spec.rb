@@ -65,7 +65,7 @@ describe 'Zine::Page' do
           .to receive(:open)
           .with('bad.md', 'r')
           .and_return(
-            StringIO.new("---quote: '2017-02-26T21:01:03+11:00\n---\n\nStuff")
+            StringIO.new("---quote: '2017-02-26T21:01:03+11:00n---nnStuff")
           )
         expect do
           page = Zine::Page.new 'bad.md',
@@ -82,24 +82,19 @@ describe 'Zine::Page' do
         expected_content =
           '<!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8">
           <meta name="viewport" content="width=device-width,user-scalable=yes">
-          <meta name="description" content="The scribblings of a once and
-          future code monkey"> <title>Mike Kreuzer | About</title> <link
-          rel="home" href="https://mikekreuzer.com/rss.xml"
-          type="application/rss+xml" title="Mike Kreuzer">
-          <link rel="stylesheet" href="https://mikekreuzer.com/screen.css">
-          <link rel="apple-touch-icon"
-          href="https://mikekreuzer.com/apple-touch-icon.png"> </head>
+          <meta name="description" content="The scribblings of a once and future code
+          monkey"> <title>Mike Kreuzer | About</title> <link rel="home"
+          href="https://mikekreuzer.com/rss.xml" type="application/rss+xml"
+          title="Mike Kreuzer"> <link rel="stylesheet" href="/screen.css">
+          <link rel="apple-touch-icon" href="/apple-touch-icon.png"> </head>
           <body> <div id="skiptocontent"> <a href="#maincontent">Skip to main
           content</a> </div> <header> <div class="logo"></div> <h1><a
           href="https://mikekreuzer.com">Mike Kreuzer</a></h1> <nav> <ul>
           <li><a href="https://mikekreuzer.com">Home</a></li>
-          <li><a href="https://mikekreuzer.com/articles.html">Articles</a></li>
-          <li><a href="https://mikekreuzer.com/about.html">About</a></li>
-          </ul><a href="https://twitter.com/mikekreuzer" class="button
-          twitter">Argue with me on Twitter</a><a
-          href="https://mikekreuzer.com/rss.xml" rel="home"
-          type="application/rss+xml" class="button rss">RSS Feed</a>
-          </nav> </header> <a name="maincontent"></a>'.gsub(/\s{2,}/, ' ')
+          <li><a href="/articles.html">Articles</a></li>
+          <li><a href="/tags/index.html">Tags</a></li>
+          <li><a href="/about.html">About</a></li>
+          </ul> </nav> </header> <a name="maincontent"></a>'.gsub(/\n/,' ').gsub(/ +/, ' ')
         path_string = File.join(Dir.pwd, 'temp.html')
         output = @page.process MockFile
         expect(output).to eql(path: path_string, content: expected_content)
@@ -107,3 +102,5 @@ describe 'Zine::Page' do
     end
   end
 end
+
+

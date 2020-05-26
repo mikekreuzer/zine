@@ -141,12 +141,20 @@
 - placeholder site, mostly in case there's ever an app: https://zine.dev
 
 # 0.14.0 - May 27, 2019
+
 - added an AWS S3 uploader
 - added AWS CloudFront invalidation
 - added zine.dev to the footer template
 - bug fix - catch carriage returns as default yes answers to the upload? question
 
+# 0.15.0 - May 26, 2020
+
+- dependency version bumps, year bump in template
+- replaced zine.dev with https://mikekreuzer.com/projects/zine/
+- other minor refactoring & doc rewrites
+
 TO DO
+
 - add canonical links to page headers, means the build order needs to change...
 - generate sitemap.xml
 - fix the SFTP error from 0.7/0.8, also likely applies to S3
@@ -154,8 +162,10 @@ TO DO
 - tests, lots of tests
 
 MAY DO
+
 - concurrent-ruby gem
 - migration scripts from eg Jekyll?
 - Apple News
 - much refactoring, frozen_string_literal, split monster classes, etc
+- replace thor with optparse
 - an app... maybe

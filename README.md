@@ -2,38 +2,34 @@
 
 [![Gem Version](https://badge.fury.io/rb/zine.svg)](https://badge.fury.io/rb/zine)
 
-Yet another blog aware static site generator.
-
-## Why yet another static blog engine?
-
-Despite the [proliferation in these things][engine_list] (!) I still find it more comfortable to use my own tools, changing them to suit my changing needs, for example here as I've moved between GitHub, EC2 & S3 hosts.
+Zine is an open source, command line, blog-aware, static website generator.
 
 Distinguishing features include:
 
 - ERB templates
 - Sass stylesheets
 - fast incremental builds
-- a choice of AWS S3, GitHub & SFTP file uploads
+- a choice of AWS S3, GitHub & SFTP file uploaders
 
-Presented here in the hope it's of use to someone else too.
+## How do I get it?
 
-## Installation
+Zine is a Ruby Gem, so if you have Ruby on your machine (it comes installed standard on a Mac), open Terminal & type
 
-Install the gem.
+````bash
+gem install zine
+````
 
-```shell
-$ gem install zine
-```
+And you're away.
 
-To generate a new site scaffold, cd to a new folder and:
+To generate a new scaffold site, cd to a new directory and:
 
 ```shell
 $ zine site
 ```
 
-Then update your site's name, your name & so on in zine.yaml. Pay particular care to the Upload section, if you want to use Zine as an SFTP uploader to deploy files that've changed, you'll need to edit this section to include your remote server's details, as well as the path to a YAML file with your username & password (nil for that if you're using SSH without a password).
+Then update your site's name, your name & so on in zine.yaml. Pay particular care to the Upload section, if you want to use Zine to deploy files you've changed, you'll need to edit this section to include your remote server's details, including the path to a YAML file with your credentials.
 
-## Day to day usage
+## Day to day use
 
 To set up a new blog post:
 
@@ -41,15 +37,25 @@ To set up a new blog post:
 $ zine post 'Your chosen title'
 ```
 
-Your new post will have some fields set up in the YAML front matter, feel free to edit them too. Markdown files you create outside of the posts folder will be rendered into HTML in the same relative position in the build folder.
+Your new post will have some fields set up in the YAML front matter, feel free to edit them too.
 
-Once you're done writing, build your new site:
+You can also create other Markdown files outside of the posts folder, those will be rendered into HTML in the same relative position in the build folder. That's how the project, about etc pages on my site are made for example.
+
+Type zine build before you start writing to serve up a local copy of your site that you can refresh to see what the build version will look like.
 
 ```shell
-$ zine build # or zine force
+$ zine build
 ```
 
-Build only writes files for things that have changed while it's running, so the first time you build your site you should use force -- force writes all of the files (& so also uploads them all too if you've set up uploads).
+or
+
+```shell
+$ zine force
+```
+
+Build will only watch for the things that change while it's running, so the first time you build your site you should use force -- force writes all of the files (& so also uploads them all too if you've set up uploads).
+
+Control-C in Terminal when you're done.
 
 ## Design & development
 
@@ -73,11 +79,11 @@ Commands:
   zine version         # Show the version number
 ```
 
-### Up next
+## Links
 
-Many versions on this is only an early cut of this gem, the stuff I considered a (barely) minimum viable product. More to come...
-
-A brief TODO list at the end of the change log.
+- [Github][github] - show me the code
+- [Ruby gems][rubygems] - show me the Ruby details (pick up some gems while you're there)
+- [Project site][mk] - Zine's home on the web
 
 ## Contributing
 
@@ -93,4 +99,6 @@ rake
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
-[engine_list]: https://staticsitegenerators.net
+[github]: https://github.com/mikekreuzer/zine
+[mk]: https://mikekreuzer/projects/zine/
+[rubygems]: https://rubygems.org/gems/zine

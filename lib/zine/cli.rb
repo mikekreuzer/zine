@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'thor'
 require 'rainbow'
 require 'time'
@@ -15,6 +17,10 @@ module Zine
     no_commands do
       def init_site
         @the_site ||= Zine::Site.new
+      end
+
+      def options
+        @the_site.options
       end
     end
 
@@ -47,7 +53,7 @@ module Zine
     desc 'nuke', 'Delete the build folder'
     def nuke
       init_site
-      FileUtils.remove_dir @the_site.options['directories']['build'],
+      FileUtils.remove_dir options['directories']['build'],
                            force: true
       puts Rainbow('Site nuked. It\'s the only way to be sure.').green
     end
@@ -55,7 +61,6 @@ module Zine
     desc 'post TITLE', 'Create the file for a new blog post, titled TITLE'
     def post(name)
       init_site
-      options = @the_site.options
       option_dir = options['directories']
       Zine::CLI.source_root option_dir['templates']
       @date = DateTime.now
@@ -77,7 +82,7 @@ module Zine
     desc 'style', 'Build the site\'s stylesheet'
     def style
       init_site
-      style = Zine::Style.new(@the_site.options['directories'])
+      style = Zine::Style.new(options['directories'])
       style.process(File)
       puts Rainbow('Stylesheet rendered').green
     end

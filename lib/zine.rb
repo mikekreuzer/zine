@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'erb'
 require 'rainbow'
 require 'zine/page'
@@ -102,10 +104,11 @@ module Zine
       # preview posts_and_guard -- no preview needed...
       return if @options['upload']['method'] == 'none' ||
                 (guard.delete_array.empty? && guard.upload_array.empty?)
-      uploader = Zine::Upload.new @options['directories']['build'],
+
+      uploader = Zine::Upload.new(@options['directories']['build'],
                                   @options['upload'],
                                   guard.delete_array,
-                                  guard.upload_array
+                                  guard.upload_array)
       uploader.upload_decision MockYes
     end
 
@@ -158,18 +161,18 @@ module Zine
     end
 
     def init_options
-      @options ||= begin
-        YAML.safe_load File.open('zine.yaml')
-      rescue ArgumentError => err
-        puts Rainbow("Could not parse YAML options: #{err.message}").red
-      end
+      @options ||= YAML.safe_load File.open('zine.yaml')
+    rescue ArgumentError => e
+      puts Rainbow("Could not parse YAML options: #{e.message}").red
     end
 
     def init_templates
+      Encoding.default_external = 'UTF-8'
       tem_array = Dir[File.join(@options['directories']['templates'], '*.erb')]
       tem_array.each do |tem|
         @templates_by_name.merge!(File.basename(tem, '.*') =>
-                                  ERB.new(File.read(tem), 0, '-'))
+          ERB.new(File.read(tem),
+                  trim_mode: '-'))
       end
     end
 
